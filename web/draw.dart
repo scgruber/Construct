@@ -4,6 +4,7 @@ import 'dart:html';
 import 'constants.dart';
 import 'toolbar.dart';
 import 'objects.dart';
+import 'quadtree.dart';
 
 RedrawManager gRedrawManager;
 
@@ -77,7 +78,7 @@ class RedrawManager {
   
   DrawingObject unprojectToObject(Point loc) {
     for (var i=0; i < displayList.length; i++) {
-      if (displayList[i].inObjectBounds(loc))
+      if (displayList[i].intersects(new BoundingBox(loc,loc)))
         return displayList[i];
     }
     

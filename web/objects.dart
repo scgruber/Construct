@@ -1,6 +1,8 @@
 import 'dart:html';
 import 'dart:math';
 
+import 'quadtree.dart' show BoundingBox;
+
 class Vec2 {
   num x, y;
   Vec2(this.x, this.y);
@@ -23,7 +25,9 @@ abstract class DrawingObject {
   
   void draw(CanvasRenderingContext2D ctx);
   highlight(CanvasRenderingContext2D ctx, num h, num s, num l);
-  bool inObjectBounds(Point loc);
+  bool intersects(BoundingBox searchBB);
+  
+  BoundingBox get bounds;
 }
 
 class LocusByCoords extends DrawingObject {
@@ -49,7 +53,16 @@ class LocusByCoords extends DrawingObject {
     ctx.closePath();
   }
   
-  bool inObjectBounds(Point loc) {
-    return (integerPosition.distanceTo(loc).abs() <= 5);
+  bool intersects(BoundingBox searchBB) {
+    return (searchBB.ne.x >= integerPosition.x &&
+        searchBB.ne.y >= integerPosition.y &&
+        searchBB.sw.x <= integerPosition.x &&
+        searchBB.sw.y <= integerPosition.y);
   }
+  
+  BoundingBox get bounds {
+    return new BoundingBox(integerPosition, integerPosition);
+  }
+  
+  
 }
