@@ -1,23 +1,6 @@
 import 'dart:html';
 import 'dart:math';
 
-class Vec2 {
-  num x, y;
-  Vec2(this.x, this.y);
-  Vec2 operator +(Vec2 other) => new Vec2(x + other.x, y + other.y);
-  Vec2 operator -(Vec2 other) => new Vec2(x - other.x, y - other.y);
-  // Dot Product
-  num operator *(Vec2 other) => (x * other.x) + (y * other.y);
-  // Cross Product
-  num operator ^(Vec2 other) => (x * other.y) - (y * other.x);
-  // Scalar Product
-  Vec2 operator &(num scalar) => new Vec2(x*scalar, y*scalar);
-  // Decomposition
-  Vec2 operator /(Vec2 other) => other&((this*other)/(other*other));
-  // Residual
-  Vec2 operator %(Vec2 other) => this - this/other;
-}
-
 abstract class DrawingObject {
   bool resolved;
   
