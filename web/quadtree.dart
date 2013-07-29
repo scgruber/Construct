@@ -101,7 +101,7 @@ class QuadTreeNode {
   }
   
   void insert(BoundedObject obj) {
-    if (directions = null) {
+    if (directions == null) {
       // Haven't yet split the node
       if (objects.length == quadtreeSplitLimit) {
         this.split();
