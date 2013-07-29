@@ -1,7 +1,6 @@
 library toolbar;
 
 import 'dart:html';
-import 'constants.dart';
 import 'draw.dart';
 import 'objects.dart';
 

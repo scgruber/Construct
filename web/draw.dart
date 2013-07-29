@@ -1,7 +1,6 @@
 library draw;
 
 import 'dart:html';
-import 'constants.dart';
 import 'toolbar.dart';
 import 'objects.dart';
 import 'quadtree.dart';
@@ -9,20 +8,15 @@ import 'quadtree.dart';
 RedrawManager gRedrawManager;
 
 class RedrawManager {
-  List<bool> flags;
   CanvasRenderingContext2D wsCtx;
   num wsWidth, wsHeight;
   QuadTree displayTree;
   QuadTree preselectTree;
   QuadTree selectTree;
   
-  RedrawManager(ct, this.wsCtx) {
-    this.flags = new List(ct);
+  RedrawManager(this.wsCtx) {
     this.wsWidth = this.wsCtx.canvas.clientWidth;
     this.wsHeight = this.wsCtx.canvas.clientHeight;
-    for (var i=0; i < ct; i++) {
-      this.flags[i] = false;
-    }
     this.displayTree = new QuadTree();
     this.preselectTree = new QuadTree();
     this.selectTree = new QuadTree();
