@@ -12,9 +12,9 @@ class RedrawManager {
   List<bool> flags;
   CanvasRenderingContext2D wsCtx;
   num wsWidth, wsHeight;
-  List<DrawingObject> displayList;
-  List<DrawingObject> preselectList;
-  List<DrawingObject> selectList;
+  QuadTree displayTree;
+  QuadTree preselectTree;
+  QuadTree selectTree;
   
   RedrawManager(ct, this.wsCtx) {
     this.flags = new List(ct);
@@ -23,9 +23,9 @@ class RedrawManager {
     for (var i=0; i < ct; i++) {
       this.flags[i] = false;
     }
-    this.displayList = new List();
-    this.preselectList = new List();
-    this.selectList = new List();
+    this.displayTree = new QuadTree();
+    this.preselectTree = new QuadTree();
+    this.selectTree = new QuadTree();
     this.wsCtx.canvas.onClick.listen(this.clickRouter);
   }
   
@@ -40,16 +40,19 @@ class RedrawManager {
     wsCtx.translate(wsWidth/2, wsHeight/2);
     
     // Draw all objects in the display list
+    List<BoundedObject> displayList = displayTree.root.dump();
     for (int i=0; i < displayList.length; i++) {
-      displayList[i].draw(wsCtx);
+      displayList[i].obj.draw(wsCtx);
     }
     
     // Highlight all objects in the highlight lists
+    List<BoundedObject> preselectList = preselectTree.root.dump();
     for (int i=0; i <preselectList.length; i++) {
-      preselectList[i].highlight(wsCtx, 200, 70, 100);
+      preselectList[i].obj.highlight(wsCtx, 200, 70, 100);
     }
+    List<BoundedObject> selectList = selectTree.root.dump();
     for (int i=0; i <selectList.length; i++) {
-      selectList[i].highlight(wsCtx, 300, 70, 100);
+      selectList[i].obj.highlight(wsCtx, 300, 70, 100);
     }
     
     // Reset translation matrix
@@ -57,33 +60,34 @@ class RedrawManager {
   }
   
   void addDisplayObject(DrawingObject obj) {
-    displayList.add(obj);
+    displayTree.insert(new BoundedObject(obj));
   }
   
   void addPreselectionObject(DrawingObject obj) {
-    preselectList.add(obj);
+    preselectTree.insert(new BoundedObject(obj));
   }
   
   void clearPreselection() {
-    preselectList.clear();
+    preselectTree = new QuadTree();
   }
   
   void addSelectionObject(DrawingObject obj) {
-    selectList.add(obj);
+    selectTree.insert(new BoundedObject(obj));
   }
   
   void clearSelection() {
-    selectList.clear();
+    selectTree = new QuadTree();
   }
   
   DrawingObject unprojectToObject(Point loc) {
-    for (var i=0; i < displayList.length; i++) {
-      if (displayList[i].intersects(new BoundingBox(loc,loc)))
-        return displayList[i];
+    BoundingBox mouseBB = new BoundingBox(loc + new Point(10,10), 
+        loc - new Point(10,10));
+    List<BoundedObject> unprojections = displayTree.intersections(mouseBB);
+    if (unprojections.length >= 1) {
+      return unprojections[0].obj;
+    } else {
+      return null;
     }
-    
-    // Only reach here if there is nothing at loc
-    return null;
   }
   
   /* void clickRouter(event)
