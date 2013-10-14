@@ -5,7 +5,7 @@ Returns: Two points, the distance between equal to the area of the triangle
 Let the points be labeled p1, p2, p3
 
 Algorithm:
-0. ACCEPT POINTS (p1, p2, p3)
+0.  ACCEPT POINTS (p1, p2, p3)
   [Transform into right triangle of equal area]
 1.  DEFINE the LINE THROUGH p1 and THROUGH p2 as l1
 2.  DEFINE the LINE THROUGH p3 and PARALLEL to l1 as l2
