@@ -1,0 +1,23 @@
+Given: Three non-colinear points
+Returns: Two points, the distance between equal to the area of the triangle
+    defined by the three supplied points.
+
+Let the points be labeled p1, p2, p3
+
+Algorithm:
+0. ACCEPT POINTS (p1, p2, p3)
+  [Transform into right triangle of equal area]
+1.  DEFINE the LINE THROUGH p1 and THROUGH p2 as l1
+2.  DEFINE the LINE THROUGH p3 and PARALLEL to l1 as l2
+3.  DEFINE the LINE THROUGH p2 and PERPENDICULAR to l1 as l3
+4.  DEFINE the POINT ON l2 and ON l3 as p4
+  <-- Triangle(p1, p2, p4) has equal area --> 
+  [Transform into right triangle of equal area with leg length 2]
+5.  DEFINE the VECTOR ALONG l3 FROM p2 with LENGTH 2 as v1
+6.  DEFINE the POINT at the TERMINAL of v1 as p5
+7.  DEFINE the LINE THROUGH p1 and THROUGH p5 as l4
+8.  DEFINE the LINE THROUGH p4 and PARALLEL to l4 as l5
+9.  DEFINE the POINT ON l1 and ON l5 as p6
+  <-- Distance(p2, p6) is the area of Triangle (p2, p4, p6) -->
+  [Return other leg]
+10. PROVIDE POINTS (p2, p6)
