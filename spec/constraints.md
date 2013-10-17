@@ -4,22 +4,31 @@ Constraints are used to check whether primitives achieve certain criteria.
 
 ## Point Constraints
 
- * Coincident - Given two points, achieved if the points are in exactly the same location
+ * Coincident - Given a point, achieved if that point is in exactly the same location as this point
 
 ## Line Constraints
 
- * Coincident - Given two lines, achieved if the lines are in exactly the same location
- * Through - Given a point, achieved if the line passes through that point
+ * Coincident - Given a line, achieved if that line is in exactly the same location as this line
+ * Through - Given a point, achieved if this line passes through that point
+ * Intersecting - Given a line, achieved if that line crosses this line
+ * Parallel - Given a line, achieved if that line has the same slope as this line
 
 ## Circle Constraints
 
- * Coincident - Given two circles, achieved if the circles are in exactly the same location
- * Through - Given a point, achieved if the circle passes through that point
+ * Coincident - Given a circle, achieved if that circle is in exactly the same location as this circle
+ * Through - Given a point, achieved if this circle passes through that point
+ * Intersecting - Given a line, achieved if that line crosses this circle
+ * Intersecting - Given a circle, achieved if that circle crosses this circle
 
 ## Vector Constraints
 
- * Equal - Given two vectors, achieved if the direction and magnitude of the vectors are the same
+ * Equal - Given a vector, achieved if the magnitude of that vector is the same as this vector
+ * Parallel - Given a vector, achieved if the direction of that vector is the same as this vector
+ * Unit - Achieved if the magnitude of this vector is 1
 
 ## Angle Constraints
 
  * Equal - Given two angles, achieved if the sweep of the angles is the same
+ * Right - Achieved if the sweep of this angle is 90 degrees
+ * Acute - Acheived if the sweep of this angle is less than 90 degrees
+ * Obtuse - Achieved if the sweep of this angle is greater than 90 degrees
