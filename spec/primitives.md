@@ -20,4 +20,3 @@ Measurement Primitives represent geometric information that isn't an actual obje
 Collection Primitives represent ways to work with multiple objects as a single unit.
 
  * Group - A finite collection of actual objects
- * Set - An infinite collection of potential objects defined by a pattern
