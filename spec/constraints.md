@@ -1,28 +1,25 @@
 # Constraints
 
-Constraints are used to specify Collection Primitives.
+Constraints are used to check whether primitives achieve certain criteria.
 
-## Collection to Object Constraints
+## Point Constraints
 
-These constraints provide a single object when applied to a collection.
-The provided object is guaranteed to have been a member of the original collection.
+ * Coincident - Given two points, achieved if the points are in exactly the same location
 
- * Most - This constraint takes a Vector and provides the object furthest in the direction of the vector.
- * Choose - This provides a single object from the collection.
+## Line Constraints
 
-## Collection to Collection Constraints
+ * Coincident - Given two lines, achieved if the lines are in exactly the same location
+ * Through - Given a point, achieved if the line passes through that point
 
-These constraints provide a collection when applied to a collection.
-The provided collection is guaranteed to have been a subset of the original collection.
+## Circle Constraints
 
- * Beyond - This constraint takes a Line Primitive and a Vector and provides the collection of objects which are on the side of the Line in the direction of the Vector.
- * Within - This constraint takes a Circle Primitive and provides the collection of objects which are inside of the Circle.
- * Without - This constraint takes a Circle Primitive and provides the collection of objects which are outside the bounds of the Circle.
+ * Coincident - Given two circles, achieved if the circles are in exactly the same location
+ * Through - Given a point, achieved if the circle passes through that point
 
-## Multi-Collection to Collection Constraints
+## Vector Constraints
 
-These constraints provide a single collection when applied to multiple collections.
-The provided collection is guaranteed to have been a subset of the union of the original collections.
+ * Equal - Given two vectors, achieved if the direction and magnitude of the vectors are the same
 
- * Union - This constraint provides a collection containing all of the objects within any of the original collections.
- * Intersection - This constraint provides a collection containing all of the objects contained in every one of the original collections.
+## Angle Constraints
+
+ * Equal - Given two angles, achieved if the sweep of the angles is the same
