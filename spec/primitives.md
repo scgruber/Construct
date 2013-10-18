@@ -10,7 +10,7 @@ Object Primitives represent actual geometric *things*, much like primitive value
 
 ## Measurement Primitives
 
-Measurement Primitives represent geometric information that isn't an actual object, but is useful in describing objects. Measurement primitives are considered *ephemeral* because they cannot be passed in or out of procedures.
+Measurement Primitives represent geometric information that isn't an actual object, but is useful in describing objects.
 
  * Angle - The measure of separation between two intersecting lines
  * Vector - The measure of separation between a start and end point
