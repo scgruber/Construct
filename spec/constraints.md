@@ -2,9 +2,18 @@
 
 Constraints are used to check whether primitives achieve certain criteria.
 
+## General Constraints
+
+ * Not - Given a constraint, achieved if that constraint is not achieved
+
 ## Point Constraints
 
  * Coincident - Given a point, achieved if that point is in exactly the same location as this point
+ * At Origin - Given a vector, achieved if this point is at the origin of the vector
+ * At Terminal - Given a vector, achieved if this point is at the terminal of the vector
+ * On - Given a line, achieved if this point lies upon that line
+ * On - Given a circle, achieved if this point lies upon that circle
+ * Inside - Given a circle, achieved if this point lies within the circle
 
 ## Line Constraints
 
