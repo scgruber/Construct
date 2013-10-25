@@ -6,6 +6,7 @@ Object Primitives represent actual geometric *things*, much like primitive value
 
  * Point - An atomic position in space
  * Line - An infinite line extending through space
+ * Segment - A finite line
  * Circle - A curve which passes through all points at a certain distance from its center
 
 ## Measurement Primitives
