@@ -36,6 +36,7 @@ Constraints are used to check whether primitives achieve certain criteria.
  * Constant - Given a number, achieved if this distance is the same as that number
  * Less - Given a distance, achieved if this distance is shorter than that distance
  * Greater - Given a distance, achieved if this distance is longer than that distance
+ * Between - Given two points, achieved if this distance is the same as the length between those two points
 
 ## Angle Constraints
 
@@ -43,3 +44,4 @@ Constraints are used to check whether primitives achieve certain criteria.
  * Constant - Given a number, achieved if the sweep of this angle is equal to that number
  * Wider - Given an angle, achieved if the sweep of this angle is greater than the sweep of that angle
  * Narrower - Given an angle, achieved if the sweep of this angle is less than the sweep of that angle
+ * Between - Given two lines, achieved if this angle's sweep is the same as the small sweep between those two lines
