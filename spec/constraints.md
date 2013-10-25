@@ -28,16 +28,18 @@ Constraints are used to check whether primitives achieve certain criteria.
  * Through - Given a point, achieved if this circle passes through that point
  * Intersecting - Given a line, achieved if that line crosses this circle
  * Intersecting - Given a circle, achieved if that circle crosses this circle
+ * About - Given a point, achieved if that point is coincident with this circle's center
 
-## Vector Constraints
+## Distance Constraints
 
- * Equal - Given a vector, achieved if the magnitude of that vector is the same as this vector
- * Parallel - Given a vector, achieved if the direction of that vector is the same as this vector
- * Unit - Achieved if the magnitude of this vector is 1
+ * Equal - Given a distance, achieved if that distance is the same as this distance
+ * Constant - Given a number, achieved if this distance is the same as that number
+ * Less - Given a distance, achieved if this distance is shorter than that distance
+ * Greater - Given a distance, achieved if this distance is longer than that distance
 
 ## Angle Constraints
 
- * Equal - Given two angles, achieved if the sweep of the angles is the same
- * Right - Achieved if the sweep of this angle is 90 degrees
- * Acute - Acheived if the sweep of this angle is less than 90 degrees
- * Obtuse - Achieved if the sweep of this angle is greater than 90 degrees
+ * Equal - Given an angle, achieved if the sweep of this angle is the same as the sweep of that angle
+ * Constant - Given a number, achieved if the sweep of this angle is equal to that number
+ * Wider - Given an angle, achieved if the sweep of this angle is greater than the sweep of that angle
+ * Narrower - Given an angle, achieved if the sweep of this angle is less than the sweep of that angle
