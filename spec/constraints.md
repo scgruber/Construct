@@ -9,18 +9,16 @@ Constraints are used to check whether primitives achieve certain criteria.
 ## Point Constraints
 
  * Coincident - Given a point, achieved if that point is in exactly the same location as this point
- * At Origin - Given a vector, achieved if this point is at the origin of the vector
- * At Terminal - Given a vector, achieved if this point is at the terminal of the vector
  * On - Given a line, achieved if this point lies upon that line
  * On - Given a circle, achieved if this point lies upon that circle
  * Inside - Given a circle, achieved if this point lies within the circle
+ * At - Given a distance and a point, achieved if this point is that distance from that point
 
 ## Line Constraints
 
  * Coincident - Given a line, achieved if that line is in exactly the same location as this line
  * Through - Given a point, achieved if this line passes through that point
  * Intersecting - Given a line, achieved if that line crosses this line
- * Parallel - Given a line, achieved if that line has the same slope as this line
 
 ## Circle Constraints
 
