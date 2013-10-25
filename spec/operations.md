@@ -3,7 +3,6 @@
 ## Definition Operations
 
  * Define Object Primitive - This operation creates an object primitive of some kind based on other objects or absolute information specified.
- * Define Measurement Primitive - This operation creates a measurement primitive of some kind based on other objects or absolute information specified.
  * Define Collection Primitive - This operation creates a collection primitive of some kind based on other objects or absolute information specified.
 
 ## Execution Operations
