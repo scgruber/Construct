@@ -2,6 +2,7 @@ library toolbarmanager;
 
 import 'dart:core';
 import 'dart:html';
+import 'dart:math';
 
 class ToolBarManager {
   CanvasRenderingContext2D cvs;
@@ -18,6 +19,7 @@ class ToolBarManager {
     
     // Set up the toolsets
     this.objectTools = new List();
+    (new PointTool()).register(this);
     this.constraintTools = new List();
     
     // Draw the initial toolbar
@@ -51,9 +53,41 @@ class ToolBarManager {
 }
 
 abstract class Tool {
+  // Constructor
   Tool();
+  // Called to attach the tool to the toolbar manager
   void register(ToolBarManager tb);
   
+  // Called to draw the glyph for the button in the toolbar
   void drawButton(num x, num y, num width, num height);
+  
+  // Called when the user clicks on the toolbar button
+  void toolStart();
+  // Called when the user clicks in the workspace
   void click();
+}
+
+class PointTool implements Tool {
+  CanvasRenderingContext2D cvs;
+  
+  PointTool() {}
+  void register(ToolBarManager tb) {
+    cvs = tb.cvs;
+    tb.objectTools.add(this);
+  }
+  
+  void drawButton(num x, num y, num width, num height) {
+    cvs.strokeStyle = '#BBBBBB';
+    cvs.fillStyle = '#BBBBBB';
+    num cx = x + (width/2);
+    num cy = y + (height/2);
+    cvs.arc(cx, cy, 2.5, 0, 2*PI);
+    cvs.fill();
+  }
+  
+  void toolStart() {
+    // Create an unconstrained point object
+  }
+  
+  void click() {}
 }
