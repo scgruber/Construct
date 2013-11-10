@@ -18,6 +18,7 @@ class PointObject implements ConstructedObject {
   }
   
   void draw(CanvasRenderingContext2D cvs) {
+    cvs.fillStyle = '#BBBBBB';
     cvs.beginPath();
     cvs.arc(position.x, position.y, 2.5, 0.0, 2.0*PI);
     cvs.closePath();

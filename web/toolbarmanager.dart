@@ -3,6 +3,8 @@ library toolbarmanager;
 import 'dart:core';
 import 'dart:html';
 import 'dart:math';
+import 'construct.dart';
+import 'constructedobject.dart';
 
 class ToolBarManager {
   CanvasRenderingContext2D cvs;
@@ -45,7 +47,7 @@ class ToolBarManager {
   }
   
   void drawSpacer(num x, num y, num width, num height) {
-    cvs.strokeStyle = '#BBBBBB';
+    cvs.strokeStyle = '#444444';
     cvs.lineWidth = 1;
     cvs.beginPath();
     cvs.moveTo(x, y);
@@ -142,7 +144,9 @@ class PointTool implements Tool {
   
   void start() {
     // Create an unconstrained point object
-    window.alert('Clicked on point tool');
+    PointObject spawn = new PointObject();
+    gProgramModel.create(spawn);
+    gWSManager.redraw();
   }
   
   void click() {}
