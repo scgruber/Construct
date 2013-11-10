@@ -8,11 +8,15 @@ class ToolBarManager {
   CanvasRenderingContext2D cvs;
   List<Tool> objectTools;
   List<Tool> constraintTools;
+  Tool activeTool;
   
   static const num buttonDim = 30;
   static const num buttonSpacing = 5;
   
   ToolBarManager(this.cvs){
+    // Register mouse event handlers
+    this.cvs.canvas.addEventListener('mousedown', this.click);
+    
     // Paint the background gray
     this.cvs.fillStyle = '#222222';
     this.cvs.fillRect(0, 0, this.cvs.canvas.width, this.cvs.canvas.height);
@@ -50,6 +54,41 @@ class ToolBarManager {
     cvs.lineTo(x+width, y+height);
     cvs.stroke();
   }
+  
+  void click(MouseEvent event) {
+    setClickedToolActive(event.offset);
+    
+    if (activeTool != null)
+      activeTool.start();
+  }
+  
+  void setClickedToolActive(Point mousePt) {
+    // Check horizontal bounds
+    if ((buttonSpacing <= mousePt.x) && (mousePt.x <= buttonSpacing + buttonDim)) {
+      num relY = mousePt.y - 5;
+      // Check object tools
+      for (int i=0; i<objectTools.length; i++) {
+        if (relY < 0) {
+          // Clicked in the spacer
+          window.alert('Clicked in spacer');
+          return;
+        } else if (relY <= buttonDim) {
+          // Clicked on button i
+          activeTool = objectTools[i];
+          window.alert('Clicked on button ' + i.toString());
+          return;
+        } else {
+          // Clicked beyond current button
+          relY -= buttonDim + buttonSpacing;
+          window.alert('Clicked in empty space');
+        }
+      }
+      // Skip over divider
+      relY -= buttonSpacing * 2;
+      // Didn't click on anything
+      return;
+    }
+  }
 }
 
 abstract class Tool {
@@ -62,7 +101,7 @@ abstract class Tool {
   void drawButton(num x, num y, num width, num height);
   
   // Called when the user clicks on the toolbar button
-  void toolStart();
+  void start();
   // Called when the user clicks in the workspace
   void click();
 }
@@ -85,7 +124,7 @@ class PointTool implements Tool {
     cvs.fill();
   }
   
-  void toolStart() {
+  void start() {
     // Create an unconstrained point object
   }
   
