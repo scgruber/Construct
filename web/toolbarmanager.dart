@@ -70,23 +70,33 @@ class ToolBarManager {
       for (int i=0; i<objectTools.length; i++) {
         if (relY < 0) {
           // Clicked in the spacer
-          window.alert('Clicked in spacer');
           return;
         } else if (relY <= buttonDim) {
           // Clicked on button i
           activeTool = objectTools[i];
-          window.alert('Clicked on button ' + i.toString());
           return;
         } else {
           // Clicked beyond current button
           relY -= buttonDim + buttonSpacing;
-          window.alert('Clicked in empty space');
         }
       }
       // Skip over divider
       relY -= buttonSpacing * 2;
+      // Check constraint tools
+      for (int i=0; i<constraintTools.length; i++) {
+        if (relY < 0) {
+          // Clicked in the spacer
+          return;
+        } else if (relY <= buttonDim) {
+          // Clicked on button i
+          activeTool = constraintTools[i];
+          return;
+        } else {
+          // Clicked beyond current button
+          relY -= buttonDim + buttonSpacing;
+        }
+      }
       // Didn't click on anything
-      return;
     }
   }
 }
@@ -126,6 +136,7 @@ class PointTool implements Tool {
   
   void start() {
     // Create an unconstrained point object
+    window.alert('Clicked on point tool');
   }
   
   void click() {}
