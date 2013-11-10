@@ -13,10 +13,10 @@ Object Primitives represent actual geometric *things*, much like primitive value
 Measurement Primitives represent geometric information that isn't an actual object, but is useful in describing objects.
 
  * Angle - The measure of separation between two intersecting lines
- * Vector - The measure of separation between a start and end point
+ * Distance - The measure of separation between two points
 
 ## Collection Primitives
 
 Collection Primitives represent ways to work with multiple objects as a single unit.
 
- * Group - A finite collection of actual objects
+ * Group - A finite collection of objects

@@ -1,21 +1,18 @@
 // Imports
 import 'dart:html';
-import 'draw.dart';
-import 'objects.dart';
-import 'toolbar.dart';
+import 'workspacemanager.dart';
+import 'toolbarmanager.dart';
+import 'datagraphmanager.dart';
+
+// Globals
+WorkSpaceManager gWSManager;
+ToolBarManager gTBManager;
+DataGraphManager gDGManager;
 
 void main() {
-  // Initialize the workspace canvas element
-  CanvasElement wsCvs = query("#workspace");
-  gRedrawManager = new RedrawManager(wsCvs.getContext("2d"));
-  gRedrawManager.addDisplayObject(new LocusByCoords(new Point(0, 0)));
-  gRedrawManager.addPreselectionObject(new LocusByCoords(new Point(0, -50)));
-  gRedrawManager.addSelectionObject(new LocusByCoords(new Point(0, 50)));
-  gRedrawManager.redraw();
+  // Create global objects
+  gWSManager = new WorkSpaceManager(querySelector("#workspace").getContext('2d'));
+  gTBManager = new ToolBarManager(querySelector("#toolbar").getContext('2d'));
+  gDGManager = new DataGraphManager(querySelector("#datagraph").getContext('2d'));
   
-  //Initialize the toolbar canvas element
-  CanvasElement tbCvs = query("#toolbar");
-  gToolbarManager = new ToolbarManager(tbCvs.getContext("2d"));
-  registerAllTools();
-  gToolbarManager.redraw();
 }

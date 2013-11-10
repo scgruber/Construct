@@ -1,5 +1,6 @@
 
 body {
+  width: 100%;
   background-color: #F8F8F8;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
@@ -16,16 +17,27 @@ canvas {
   display: inline-block;
 }
 
-#sample_container_id {
+.clear {
   width: 100%;
-  height: 400px;
-  position: relative;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  height: 0px;
+  clear: both;
 }
 
-#sample_text_id {
-  font-size: 24pt;
-  text-align: center;
-  margin-top: 140px;
+#app {
+  margin: auto;
+  width: 650px;
+}
+
+#panels {
+  float: left;
+  width: 40px;
+}
+
+#spaces {
+  float: right;
+  width: 600px;
+}
+
+#datagraph {
+  margin-top: 7px;
 }
