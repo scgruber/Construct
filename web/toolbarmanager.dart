@@ -47,11 +47,15 @@ class ToolBarManager {
   void drawSpacer(num x, num y, num width, num height) {
     cvs.strokeStyle = '#BBBBBB';
     cvs.lineWidth = 1;
+    cvs.beginPath();
     cvs.moveTo(x, y);
     cvs.lineTo(x+width, y);
+    cvs.closePath();
     cvs.stroke();
+    cvs.beginPath();
     cvs.moveTo(x, y+height);
     cvs.lineTo(x+width, y+height);
+    cvs.closePath();
     cvs.stroke();
   }
   
@@ -130,7 +134,9 @@ class PointTool implements Tool {
     cvs.fillStyle = '#BBBBBB';
     num cx = x + (width/2);
     num cy = y + (height/2);
+    cvs.beginPath();
     cvs.arc(cx, cy, 2.5, 0, 2*PI);
+    cvs.closePath();
     cvs.fill();
   }
   
