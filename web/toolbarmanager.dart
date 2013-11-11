@@ -105,6 +105,10 @@ class ToolBarManager {
       // Didn't click on anything
     }
   }
+  
+  void deactivateTool() {
+    activeTool = null;
+  }
 }
 
 abstract class Tool {
@@ -147,6 +151,7 @@ class PointTool implements Tool {
     PointObject spawn = new PointObject();
     gProgramModel.create(spawn);
     gWSManager.redraw();
+    gTBManager.deactivateTool();
   }
   
   void click() {}
