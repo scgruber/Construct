@@ -18,7 +18,10 @@ Set<ConstructedObject> graphSearchSolver( Set<ConstructedObject> visited,
   // For every object in the frontier, attempt to solve its position
   for (ConstructedObject f in frontier) {
     // Filter only constraints connected to the visited set
-    f.constraints.retainWhere((c){return visited.contains(c.referenceObject);});
+    Set<Constraint> backConstraints = new Set.from(f.constraints);
+    backConstraints.retainWhere((c){return visited.contains(c.referenceObject);});
+    
+    int mismatch = solveSystem(f, backConstraints);
   }
 }
 
@@ -33,4 +36,10 @@ Set<ConstructedObject> mkFrontier ( Set<ConstructedObject> visited,
   // Difference out all objects in visited
   frontier = frontier.difference(visited);
   return frontier;
+}
+
+// This function sets TARGET to a definition compatible with DEFS
+// and returns the number of degrees of freedom remaining in TARGET
+int solveSystem(ConstructedObject target, Set<Constraint> defs) {
+  return 79; // dummy
 }
