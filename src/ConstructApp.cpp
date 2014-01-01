@@ -1,61 +1,63 @@
-#include "testApp.h"
+#include "ConstructApp.h"
+#include "tools/Toolbar.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void ConstructApp::setup() {
+    m_toolbar = new Toolbar();
+}
+
+//--------------------------------------------------------------
+void ConstructApp::update() {
 
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
+void ConstructApp::draw() {
+    ofBackground(30,30,30);
+    m_toolbar->draw();
+}
+
+//--------------------------------------------------------------
+void ConstructApp::keyPressed(int key) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void ConstructApp::keyReleased(int key) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ConstructApp::mouseMoved(int x, int y ) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ConstructApp::mouseDragged(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
+void ConstructApp::mousePressed(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ConstructApp::mouseReleased(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void ConstructApp::windowResized(int w, int h) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ConstructApp::gotMessage(ofMessage msg) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
+void ConstructApp::dragEvent(ofDragInfo dragInfo) {
 
 }
