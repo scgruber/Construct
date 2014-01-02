@@ -22,6 +22,7 @@ Toolbar::~Toolbar() {
 
 void Toolbar::draw() {
     ofSetColor(200,200,200);
+    ofFill();
     ofRectRounded(20,20,mWidth,mHeight,5);
     ofPushMatrix();
     ofTranslate(25,25,0);
