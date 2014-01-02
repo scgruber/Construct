@@ -9,6 +9,12 @@ class SelectionTool : public Tool
     public:
         SelectionTool();
         virtual ~SelectionTool();
+
+        void setUp();
+        void handleLeftClick();
+        void setDown();
+
+        void drawButton();
     protected:
     private:
 };

@@ -5,8 +5,11 @@
 class Tool
 {
     public:
-        Tool();
-        virtual ~Tool();
+        virtual void setUp() = 0;
+        virtual void handleLeftClick() = 0;
+        virtual void setDown() = 0;
+
+        virtual void drawButton() = 0;
     protected:
     private:
 };
