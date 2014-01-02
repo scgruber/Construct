@@ -10,6 +10,10 @@ Toolbar::Toolbar() {
     }
     // Register tools
     registerTool(0,new SelectionTool());
+
+    // Set active tool to be 0,0
+    mActiveTool.first = 0;
+    mActiveTool.second = 0;
 }
 
 Toolbar::~Toolbar() {
@@ -22,9 +26,16 @@ void Toolbar::draw() {
     ofPushMatrix();
     ofTranslate(25,25,0);
     for (int iToolSet = 0; iToolSet < mcNumToolSets; iToolSet++) {
+        if (iToolSet != 0) {
+            ofSetColor(100,100,100);
+            ofSetLineWidth(1);
+            ofLine(2,3,28,3);
+            ofTranslate(0,5,0);
+        }
         for (std::vector<Tool*>::iterator it = mToolSets[iToolSet]->begin();
             it != mToolSets[iToolSet]->end(); it++) {
             (*it)->drawButton();
+            ofTranslate(0,30,0);
         }
     }
     ofPopMatrix();

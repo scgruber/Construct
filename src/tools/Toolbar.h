@@ -15,6 +15,9 @@ protected:
 private:
     int mWidth = 40;
     int mHeight = 20;
+
+    std::pair<int,int> mActiveTool;
+
     static const size_t mcNumToolSets = 2;
     std::vector<Tool*>* mToolSets [mcNumToolSets];
 };
