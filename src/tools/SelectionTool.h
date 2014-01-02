@@ -1,7 +1,7 @@
 #ifndef SELECTIONTOOL_H
 #define SELECTIONTOOL_H
 
-#include <Tool.h>
+#include "Tool.h"
 
 
 class SelectionTool : public Tool
