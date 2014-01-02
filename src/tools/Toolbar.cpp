@@ -1,5 +1,6 @@
 #include "ofMain.h"
 #include "SelectionTool.h"
+#include "PointTool.h"
 
 #include "Toolbar.h"
 
@@ -10,6 +11,8 @@ Toolbar::Toolbar() {
     }
     // Register tools
     registerTool(0,new SelectionTool());
+
+    registerTool(1,new PointTool());
 
     // Set active tool to be 0,0
     mActiveTool.first = 0;
@@ -35,7 +38,7 @@ void Toolbar::draw() {
         }
         for (int iTool = 0; iTool < mToolSets[iToolSet]->size(); iTool++) {
             if ((iToolSet == mActiveTool.first) && (iTool == mActiveTool.second)) {
-                ofSetColor(20,200,80);
+                ofSetColor(80,180,20);
                 ofFill();
                 ofRectRounded(0,0,30,30,2);
             }
@@ -48,10 +51,14 @@ void Toolbar::draw() {
 
 bool Toolbar::registerTool(int toolGroup, Tool* tool) {
     if ((0 <= toolGroup) && (toolGroup < mcNumToolSets)) {
-        // Group index is valid. Add the tool.
-        mToolSets[toolGroup]->push_back(tool);
+        // Group index is valid.
         // Increase the toolbar height to accomodate the tool
+        if (mToolSets[toolGroup]->empty()) {
+            mHeight += 5;
+        }
         mHeight += 30;
+        // Add the tool.
+        mToolSets[toolGroup]->push_back(tool);
         return true;
     } else {
         // Group index out of bounds. Registration fails.
