@@ -14,7 +14,7 @@ public:
 protected:
 private:
     int mWidth = 40;
-    int mHeight = 20;
+    int mHeight = 10;
 
     std::pair<int,int> mActiveTool;
 

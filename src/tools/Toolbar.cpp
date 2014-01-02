@@ -27,7 +27,7 @@ void Toolbar::draw() {
     ofPushMatrix();
     ofTranslate(25,25,0);
     for (int iToolSet = 0; iToolSet < mcNumToolSets; iToolSet++) {
-        if (iToolSet != 0) {
+        if ((iToolSet != 0) && (mToolSets[iToolSet]->size() != 0)) {
             ofSetColor(100,100,100);
             ofSetLineWidth(1);
             ofLine(2,3,28,3);
