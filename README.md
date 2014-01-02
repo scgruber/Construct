@@ -10,4 +10,4 @@ A geometric programming medium departs significantly from the constraints that d
  * multidimensionality
  * use of patterns and constraints
 
-**Construct** is a implementation of a geometric programming medium using [Google Dart](http://dartlang.org). Its purpose is to demonstrate the feasibility of programming in a geometric way and also to showcase the benefits of such an approach to geometric problems.
+**Construct** is a implementation of a geometric programming medium using C++. Construct makes use of the OpenFrameworks graphics library suite. Its purpose is to demonstrate the feasibility of programming in a geometric way and also to showcase the benefits of such an approach to geometric problems.
