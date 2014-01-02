@@ -33,9 +33,8 @@ void Toolbar::draw() {
             ofLine(2,3,28,3);
             ofTranslate(0,5,0);
         }
-        for (std::vector<Tool*>::iterator it = mToolSets[iToolSet]->begin();
-            it != mToolSets[iToolSet]->end(); it++) {
-            (*it)->drawButton();
+        for (int iTool = 0; iTool < mToolSets[iToolSet]->size(); iTool++) {
+            mToolSets[iToolSet]->at(iTool)->drawButton();
             ofTranslate(0,30,0);
         }
     }
