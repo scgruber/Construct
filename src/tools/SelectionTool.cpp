@@ -28,7 +28,6 @@ void SelectionTool::setDown()
 
 void SelectionTool::drawButton()
 {
-    // Assumes that we have been translated and can draw in the next 30x30 px
     ofSetColor(5,5,5);
     ofBeginShape();
         ofVertex(5,5);
