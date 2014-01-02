@@ -34,6 +34,11 @@ void Toolbar::draw() {
             ofTranslate(0,5,0);
         }
         for (int iTool = 0; iTool < mToolSets[iToolSet]->size(); iTool++) {
+            if ((iToolSet == mActiveTool.first) && (iTool == mActiveTool.second)) {
+                ofSetColor(20,200,80);
+                ofFill();
+                ofRectRounded(0,0,30,30,2);
+            }
             mToolSets[iToolSet]->at(iTool)->drawButton();
             ofTranslate(0,30,0);
         }
