@@ -13,8 +13,10 @@ public:
     bool registerTool(int toolGroup, Tool* tool);
 protected:
 private:
-    static const size_t cNumToolSets = 2;
-    std::vector<Tool*>* mToolSets;
+    int mWidth = 40;
+    int mHeight = 20;
+    static const size_t mcNumToolSets = 2;
+    std::vector<Tool*>* mToolSets [mcNumToolSets];
 };
 
 #endif // TOOLBAR_H
