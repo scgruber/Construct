@@ -4,6 +4,9 @@
 //--------------------------------------------------------------
 void ConstructApp::setup() {
     m_toolbar = new Toolbar();
+
+    // Pretty Graphics Things
+    ofEnableSmoothing();
 }
 
 //--------------------------------------------------------------
