@@ -23,6 +23,23 @@ Toolbar::~Toolbar() {
     //dtor
 }
 
+void Toolbar::handleLeftClick(int x, int y) {
+    printf("Toolbar coords: (%d,%d)\n", x, y);
+    int iToolSet = 0;
+    while ((y >= 0) && (iToolSet < mcNumToolSets)) {
+        y -= 5;
+        if ((y / 30) < mToolSets[iToolSet]->size()) {
+            mActiveTool.first = iToolSet;
+            mActiveTool.second = y/30;
+            return;
+            printf("Activating tool (%d,%d)\n", mActiveTool.first, mActiveTool.second);
+        } else {
+            y -= mToolSets[iToolSet]->size() * 30;
+        }
+        iToolSet++;
+    }
+}
+
 void Toolbar::draw() {
     ofSetColor(200,200,200);
     ofFill();

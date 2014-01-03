@@ -8,6 +8,8 @@ public:
     Toolbar();
     virtual ~Toolbar();
 
+    void handleLeftClick(int x, int y);
+
     void draw();
 
     bool registerTool(int toolGroup, Tool* tool);
