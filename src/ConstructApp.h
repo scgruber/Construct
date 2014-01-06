@@ -21,6 +21,6 @@ public:
     void gotMessage(ofMessage msg);
 protected:
 private:
-    Toolbar* m_toolbar;
+    Toolbar* mToolbar;
 
 };
