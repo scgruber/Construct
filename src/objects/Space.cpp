@@ -2,8 +2,12 @@
 
 #include "Space.h"
 
-Space::Space() {
+Space::Space(int x, int y, int w, int h) {
     //ctor
+    mBounds.x = x;
+    mBounds.y = y;
+    mBounds.width = w;
+    mBounds.height = h;
 }
 
 Space::~Space() {
@@ -13,7 +17,7 @@ Space::~Space() {
 void Space::draw() {
     ofSetColor(200,200,200);
     ofFill();
-    ofRectRounded(20,20,mWidth,mHeight,5);
+    ofRectRounded(mBounds,5);
     ofPushMatrix();
     // Do stuff
     ofPopMatrix();

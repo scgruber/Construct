@@ -5,14 +5,14 @@
 class Space
 {
     public:
-        Space();
+        Space(int x, int y, int w, int h);
         virtual ~Space();
 
         void draw();
+
+        ofRectangle mBounds;
     protected:
     private:
-        int mWidth = 900;
-        int mHeight = 500;
 };
 
 #endif // SPACE_H
