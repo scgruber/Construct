@@ -1,12 +1,17 @@
 #include "ConstructApp.h"
 #include "tools/Toolbar.h"
 
+ConstructApp gApp = NULL;
+
 //--------------------------------------------------------------
 void ConstructApp::setup() {
     m_toolbar = new Toolbar();
 
     // Pretty Graphics Things
     ofEnableSmoothing();
+
+    // Set the global reference
+    gApp = this;
 }
 
 //--------------------------------------------------------------
