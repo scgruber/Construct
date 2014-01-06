@@ -1,7 +1,7 @@
 #include "ConstructApp.h"
 #include "tools/Toolbar.h"
 
-ConstructApp gApp = NULL;
+ConstructApp* gApp = NULL;
 
 //--------------------------------------------------------------
 void ConstructApp::setup() {
