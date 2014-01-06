@@ -9,7 +9,7 @@ void ConstructApp::setup() {
     mSpace = new Space();
 
     // Pretty Graphics Things
-    ofEnableSmoothing();
+    // ofEnableSmoothing();
 
     // Set the global reference
     gApp = this;
