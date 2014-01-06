@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "tools/Toolbar.h"
+#include "objects/Space.h"
 
 class ConstructApp : public ofBaseApp {
 
@@ -22,5 +23,6 @@ public:
 protected:
 private:
     Toolbar* mToolbar;
+    Space* mSpace;
 
 };

@@ -6,6 +6,7 @@ ConstructApp* gApp = NULL;
 //--------------------------------------------------------------
 void ConstructApp::setup() {
     mToolbar = new Toolbar();
+    mSpace = new Space();
 
     // Pretty Graphics Things
     ofEnableSmoothing();
@@ -23,6 +24,8 @@ void ConstructApp::update() {
 void ConstructApp::draw() {
     ofBackground(30,30,30);
     mToolbar->draw();
+    ofTranslate(50,0,0);
+    mSpace->draw();
 }
 
 //--------------------------------------------------------------
