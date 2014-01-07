@@ -22,3 +22,17 @@ void Space::draw() {
     // Do stuff
     ofPopMatrix();
 }
+
+void Space::insertObject(ConstructedObject* obj) {
+    mObjects.push_back(obj);
+}
+
+void Space::deleteObject(ConstructedObject* obj) {
+    for (std::vector<ConstructedObject*>::iterator iObject = mObjects.begin();
+            iObject != mObjects.end(); iObject++) {
+        if (*iObject == obj) {
+            mObjects.erase(iObject);
+            return;
+        }
+    }
+}

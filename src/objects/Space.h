@@ -11,10 +11,13 @@ class Space
         virtual ~Space();
 
         void draw();
+        void insertObject(ConstructedObject* obj);
+        void deleteObject(ConstructedObject* obj);
 
         ofRectangle mBounds;
     protected:
     private:
+        std::vector<ConstructedObject*> mObjects;
 };
 
 #endif // SPACE_H
