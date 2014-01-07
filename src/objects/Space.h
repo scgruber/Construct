@@ -1,6 +1,8 @@
 #ifndef SPACE_H
 #define SPACE_H
 
+#include "ConstructedObject.h"
+
 
 class Space
 {
