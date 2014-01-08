@@ -7,6 +7,7 @@ class ConstructedObject
     public:
         virtual void draw() = 0;
         virtual void placeArbitrary() = 0;
+        virtual float distanceTo(ConstructedObject* other) = 0;
     protected:
     private:
 };

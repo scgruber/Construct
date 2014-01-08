@@ -12,10 +12,12 @@ class ConstructedPoint : public ConstructedObject
 
         void draw();
         void placeArbitrary();
-    protected:
-    private:
+        float distanceTo(ConstructedObject* other);
+
         int mX;
         int mY;
+    protected:
+    private:
         const static int mcRadius = 2.5;
 };
 
