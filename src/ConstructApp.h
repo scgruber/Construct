@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CONSTRUCTAPP_H
+#define CONSTRUCTAPP_H
 
 #include "ofMain.h"
 #include "tools/Toolbar.h"
@@ -20,9 +21,11 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-protected:
-private:
+
     Toolbar* mToolbar;
     Space* mSpace;
+protected:
+private:
 
 };
+#endif // CONSTRUCTAPP_H
