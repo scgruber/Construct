@@ -13,6 +13,7 @@ public:
     void draw();
 
     bool registerTool(int toolGroup, Tool* tool);
+    void resetActiveTool();
 protected:
 private:
     int mWidth = 40;

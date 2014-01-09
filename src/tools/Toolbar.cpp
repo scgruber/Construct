@@ -33,8 +33,9 @@ void Toolbar::handleLeftClick(int x, int y) {
         if ((y / 30) < mToolSets[iToolSet]->size()) {
             mActiveTool.first = iToolSet;
             mActiveTool.second = y/30;
-            return;
             printf("Activating tool (%d,%d)\n", mActiveTool.first, mActiveTool.second);
+            mToolSets[mActiveTool.first]->at(mActiveTool.second)->setUp();
+            return;
         } else {
             y -= mToolSets[iToolSet]->size() * 30;
         }
@@ -83,4 +84,9 @@ bool Toolbar::registerTool(int toolGroup, Tool* tool) {
         // Group index out of bounds. Registration fails.
         return false;
     }
+}
+
+void Toolbar::resetActiveTool() {
+    mActiveTool.first = 0;
+    mActiveTool.second = 0;
 }
