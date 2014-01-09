@@ -40,6 +40,8 @@
 			<Option virtualFolder="src/" />
 		</Unit>
 		<Unit filename="src/objects/ConstructedObject.h" />
+		<Unit filename="src/objects/ConstructedPoint.cpp" />
+		<Unit filename="src/objects/ConstructedPoint.h" />
 		<Unit filename="src/objects/Space.cpp" />
 		<Unit filename="src/objects/Space.h" />
 		<Unit filename="src/tools/LineTool.cpp" />
