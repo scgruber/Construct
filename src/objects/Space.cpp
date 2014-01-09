@@ -1,4 +1,5 @@
 #include "ofMain.h"
+#include "ConstructedObject.h"
 
 #include "Space.h"
 
@@ -19,7 +20,11 @@ void Space::draw() {
     ofFill();
     ofRectRounded(mBounds,5);
     ofPushMatrix();
-    // Do stuff
+    ofTranslate(mBounds.x + (mBounds.width/2), mBounds.y + (mBounds.height/2));
+    for (std::vector<ConstructedObject*>::iterator iObject = mObjects.begin();
+            iObject != mObjects.end(); iObject++) {
+        (*iObject)->draw();
+    }
     ofPopMatrix();
 }
 
