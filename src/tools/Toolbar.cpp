@@ -87,6 +87,7 @@ bool Toolbar::registerTool(int toolGroup, Tool* tool) {
 }
 
 void Toolbar::resetActiveTool() {
+    mToolSets[mActiveTool.first]->at(mActiveTool.second)->setDown();
     mActiveTool.first = 0;
     mActiveTool.second = 0;
 }
