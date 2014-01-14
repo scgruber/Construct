@@ -15,9 +15,9 @@ class Space
         void deleteObject(ConstructedObject* obj);
 
         ofRectangle mBounds;
+        std::vector<ConstructedObject*> mObjects;
     protected:
     private:
-        std::vector<ConstructedObject*> mObjects;
 };
 
 #endif // SPACE_H

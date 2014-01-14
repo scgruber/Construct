@@ -30,6 +30,7 @@ void Space::draw() {
 
 void Space::insertObject(ConstructedObject* obj) {
     mObjects.push_back(obj);
+    obj->placeArbitrary();
 }
 
 void Space::deleteObject(ConstructedObject* obj) {
