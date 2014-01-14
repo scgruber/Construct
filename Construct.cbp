@@ -39,6 +39,8 @@
 		<Unit filename="src/main.cpp">
 			<Option virtualFolder="src/" />
 		</Unit>
+		<Unit filename="src/objects/ConstructedLine.cpp" />
+		<Unit filename="src/objects/ConstructedLine.h" />
 		<Unit filename="src/objects/ConstructedObject.h" />
 		<Unit filename="src/objects/ConstructedPoint.cpp" />
 		<Unit filename="src/objects/ConstructedPoint.h" />
