@@ -1,6 +1,10 @@
 #include "ofMain.h"
 
+#include "../ConstructApp.h"
+#include "../objects/ConstructedLine.h"
 #include "LineTool.h"
+
+extern ConstructApp* gApp;
 
 LineTool::LineTool()
 {
@@ -14,7 +18,11 @@ LineTool::~LineTool()
 
 void LineTool::setUp()
 {
-
+    ConstructedLine* newLine = new ConstructedLine();
+    // newLine->placeArbitrary();
+    gApp->mSpace->insertObject(newLine);
+    printf("Inserted new line\n");
+    gApp->mToolbar->resetActiveTool();
 }
 
 void LineTool::handleLeftClick()

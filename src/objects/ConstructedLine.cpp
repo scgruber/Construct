@@ -13,7 +13,11 @@ ConstructedLine::~ConstructedLine() {
 }
 
 void ConstructedLine::draw() {
-
+    ofVec2f bot = ofVec2f(-10, mIntercept-(10*mSlope));
+    ofVec2f top = ofVec2f( 10, mIntercept+(10*mSlope));
+    ofSetColor(5,5,5);
+    ofSetLineWidth(mcWidth);
+    ofLine(bot.x, bot.y, top.x, top.y);
 }
 
 void ConstructedLine::placeArbitrary() {
