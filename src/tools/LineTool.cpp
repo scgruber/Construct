@@ -44,3 +44,7 @@ void LineTool::drawButton()
     ofCircle(5,25,2.5);
     ofCircle(25,5,2.5);
 }
+
+void LineTool::drawTool() {
+
+}

@@ -15,6 +15,7 @@ class PointTool : public Tool
         void setDown();
 
         void drawButton();
+        void drawTool();
     protected:
     private:
 };

@@ -10,6 +10,7 @@ class Tool
         virtual void setDown() = 0;
 
         virtual void drawButton() = 0;
+        virtual void drawTool() = 0;
     protected:
     private:
 };

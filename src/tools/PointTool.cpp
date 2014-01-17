@@ -41,3 +41,7 @@ void PointTool::drawButton()
     ofFill();
     ofCircle(15,15,5);
 }
+
+void PointTool::drawTool() {
+
+}

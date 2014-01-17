@@ -41,3 +41,7 @@ void SelectionTool::drawButton()
         ofVertex(5,5);
     ofEndShape();
 }
+
+void SelectionTool::drawTool() {
+
+}
