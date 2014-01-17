@@ -21,7 +21,7 @@ void PointTool::setUp()
     ConstructedPoint* newPoint = new ConstructedPoint();
     newPoint->placeArbitrary();
     gApp->mSpace->insertObject(newPoint);
-    printf("Inserted new point\n");
+    printf("Inserted new point at (%f,%f)\n", newPoint->mPos.x, newPoint->mPos.y);
     gApp->mToolbar->resetActiveTool();
 }
 

@@ -14,8 +14,7 @@ class ConstructedPoint : public ConstructedObject
         void placeArbitrary();
         float distanceTo(ConstructedObject* other);
 
-        int mX;
-        int mY;
+        ofVec2f mPos;
     protected:
     private:
         const static int mcRadius = 2.5;
