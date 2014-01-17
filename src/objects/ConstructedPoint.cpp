@@ -2,6 +2,7 @@
 #include "../ConstructApp.h"
 
 #include "ConstructedPoint.h"
+#include "ConstructedLine.h"
 
 extern ConstructApp* gApp;
 
@@ -64,6 +65,15 @@ float ConstructedPoint::distanceTo(ConstructedObject* other) {
     ConstructedPoint* otherPt = dynamic_cast<ConstructedPoint*>(other);
     if (otherPt != NULL) {
         return ofDist(mPos.x, mPos.y, otherPt->mPos.x, otherPt->mPos.y);
+    }
+
+    // Try ConstructedLine
+    ConstructedLine* otherLine = dynamic_cast<ConstructedLine*>(other);
+    if (otherLine != NULL) {
+        ofVec2f p = mPos;
+        ofVec2f a = otherLine->mBasePt;
+        ofVec2f n = otherLine->mUnitVector;
+        return ((a-p) - (((a-p).dot(n))*n)).length();
     }
 
     // Unable to match to an object type
