@@ -1,12 +1,15 @@
 #include "ofMain.h"
+#include "../ConstructApp.h"
 
 #include "ConstructedLine.h"
 #include "ConstructedPoint.h"
 
+extern ConstructApp* gApp;
+
 ConstructedLine::ConstructedLine() {
     //ctor
-    mBasePt = ofVec2f(0,0);
-    mUnitVector = ofVec2f(1,0);
+    mBasePt = ofVec2f(ofRandom(-100,100),ofRandom(-100,100));
+    mUnitVector = ofVec2f(ofRandom(-100,100),ofRandom(-100,100)).getNormalized();
 }
 
 ConstructedLine::~ConstructedLine() {
@@ -22,7 +25,57 @@ void ConstructedLine::draw() {
 }
 
 void ConstructedLine::placeArbitrary() {
+    while(true) {
+        ofVec2f bestPt = mBasePt;
+        ofVec2f origPt = mBasePt;
+        ofVec2f bestVec = mUnitVector;
+        ofVec2f origVec = mUnitVector;
+        float bestD = 0.0f;
 
+        std::pair<ofVec2f,ofVec2f> candidates[12] =
+            {   std::pair<ofVec2f,ofVec2f>(origPt + ofVec2f(5,0), origVec.getRotated(5)),
+                std::pair<ofVec2f,ofVec2f>(origPt + ofVec2f(5,0), origVec.getRotated(0)),
+                std::pair<ofVec2f,ofVec2f>(origPt + ofVec2f(5,0), origVec.getRotated(-5)),
+                std::pair<ofVec2f,ofVec2f>(origPt + ofVec2f(0,5), origVec.getRotated(5)),
+                std::pair<ofVec2f,ofVec2f>(origPt + ofVec2f(0,5), origVec.getRotated(0)),
+                std::pair<ofVec2f,ofVec2f>(origPt + ofVec2f(0,5), origVec.getRotated(-5)),
+                std::pair<ofVec2f,ofVec2f>(origPt - ofVec2f(5,0), origVec.getRotated(5)),
+                std::pair<ofVec2f,ofVec2f>(origPt - ofVec2f(5,0), origVec.getRotated(0)),
+                std::pair<ofVec2f,ofVec2f>(origPt - ofVec2f(5,0), origVec.getRotated(-5)),
+                std::pair<ofVec2f,ofVec2f>(origPt - ofVec2f(0,5), origVec.getRotated(5)),
+                std::pair<ofVec2f,ofVec2f>(origPt - ofVec2f(0,5), origVec.getRotated(0)),
+                std::pair<ofVec2f,ofVec2f>(origPt - ofVec2f(0,5), origVec.getRotated(-5))
+            };
+        int randOffset = (int) ofRandom(12);
+        for (int iCandidate = 0; iCandidate < 12; iCandidate++) {
+            mBasePt = candidates[(iCandidate+randOffset)%12].first;
+            mUnitVector = candidates[(iCandidate+randOffset)%12].second;
+            float leastD = numeric_limits<float>::infinity();
+            for (std::vector<ConstructedObject*>::iterator iObject = gApp->mSpace->mObjects.begin();
+                    iObject != gApp->mSpace->mObjects.end(); iObject++) {
+                float dist = this->distanceTo(*iObject);
+                leastD = min(leastD, dist);
+            }
+            // Break ties randomly
+            if ((leastD > bestD) || ((abs(leastD-bestD) < 0.001f) && (ofRandomf() < 0.0f))) {
+                bestD = leastD;
+                bestPt = mBasePt;
+                bestVec = mUnitVector;
+            }
+        }
+
+        if (bestD == 0.0f) {
+            // Stabilized
+            mBasePt = origPt;
+            mUnitVector = origVec;
+            return;
+        } else if (bestD >= 25.0f) {
+            // Distance above threshold
+            mBasePt = bestPt;
+            mUnitVector = bestVec;
+            return;
+        }
+    }
 }
 
 float ConstructedLine::distanceTo(ConstructedObject* other) {

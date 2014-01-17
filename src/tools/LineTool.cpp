@@ -19,7 +19,7 @@ LineTool::~LineTool()
 void LineTool::setUp()
 {
     ConstructedLine* newLine = new ConstructedLine();
-    // newLine->placeArbitrary();
+    newLine->placeArbitrary();
     gApp->mSpace->insertObject(newLine);
     printf("Inserted new line (%f,%f) [%f,%f]\n", newLine->mBasePt.x, newLine->mBasePt.y, newLine->mUnitVector.x, newLine->mUnitVector.y);
     gApp->mToolbar->resetActiveTool();
