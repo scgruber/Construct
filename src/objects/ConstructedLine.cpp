@@ -13,8 +13,8 @@ ConstructedLine::~ConstructedLine() {
 }
 
 void ConstructedLine::draw() {
-    ofVec2f bot = mBasePt - (100*mUnitVector);
-    ofVec2f top = mBasePt + (100*mUnitVector);
+    ofVec2f bot = mBasePt - (250*mUnitVector);
+    ofVec2f top = mBasePt + (250*mUnitVector);
     ofSetColor(5,5,5);
     ofSetLineWidth(mcWidth);
     ofLine(bot.x, bot.y, top.x, top.y);
