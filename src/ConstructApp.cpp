@@ -8,6 +8,7 @@ void ConstructApp::setup() {
 
     // Pretty Graphics Things
     // ofEnableSmoothing();
+    ofEnableAlphaBlending();
 }
 
 //--------------------------------------------------------------
@@ -20,6 +21,7 @@ void ConstructApp::draw() {
     ofBackground(30,30,30);
     mToolbar->draw();
     mSpace->draw();
+    mToolbar->getActiveTool()->drawTool();
 }
 
 //--------------------------------------------------------------

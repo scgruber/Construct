@@ -14,6 +14,7 @@ public:
 
     bool registerTool(int toolGroup, Tool* tool);
     void resetActiveTool();
+    Tool* getActiveTool();
 protected:
 private:
     int mWidth = 40;

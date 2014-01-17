@@ -91,3 +91,7 @@ void Toolbar::resetActiveTool() {
     mActiveTool.first = 0;
     mActiveTool.second = 0;
 }
+
+Tool* Toolbar::getActiveTool() {
+    return mToolSets[mActiveTool.first]->at(mActiveTool.second);
+}
