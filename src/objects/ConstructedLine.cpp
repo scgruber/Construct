@@ -4,8 +4,8 @@
 
 ConstructedLine::ConstructedLine() {
     //ctor
-    mIntercept = 0;
-    mSlope = 1.0f;
+    mBasePt = ofVec2f(0,0);
+    mUnitVector = ofVec2f(1,0);
 }
 
 ConstructedLine::~ConstructedLine() {
@@ -13,8 +13,8 @@ ConstructedLine::~ConstructedLine() {
 }
 
 void ConstructedLine::draw() {
-    ofVec2f bot = ofVec2f(-10, mIntercept-(10*mSlope));
-    ofVec2f top = ofVec2f( 10, mIntercept+(10*mSlope));
+    ofVec2f bot = mBasePt - (100*mUnitVector);
+    ofVec2f top = mBasePt + (100*mUnitVector);
     ofSetColor(5,5,5);
     ofSetLineWidth(mcWidth);
     ofLine(bot.x, bot.y, top.x, top.y);

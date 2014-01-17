@@ -14,8 +14,8 @@ class ConstructedLine : public ConstructedObject
         void placeArbitrary();
         float distanceTo(ConstructedObject* other);
 
-        int mIntercept;
-        float mSlope;
+        ofVec2f mBasePt;
+        ofVec2f mUnitVector;
     protected:
     private:
         const static float mcWidth = 2.5;
