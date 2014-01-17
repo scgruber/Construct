@@ -105,3 +105,9 @@ float ConstructedLine::distanceTo(ConstructedObject* other) {
     // Unable to match to an object type
     return nanf("");
 }
+
+bool ConstructedLine::near(ofVec2f pt) {
+    ofVec2f a = mBasePt;
+    ofVec2f n = mUnitVector;
+    return (((a-pt) - (((a-pt).dot(n))*n)).length() < 10.0f);
+}

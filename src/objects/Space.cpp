@@ -42,3 +42,18 @@ void Space::deleteObject(ConstructedObject* obj) {
         }
     }
 }
+
+ConstructedObject* Space::getObjectUnderCursor() {
+    ofVec2f mouse = ofVec2f(ofGetMouseX(), ofGetMouseY());
+    if (mBounds.inside(mouse)) {
+        ofVec2f worldMouse = mouse - mBounds.getCenter(); // todo: better screen->world conversion
+
+        for (std::vector<ConstructedObject*>::iterator iObject = mObjects.begin();
+                iObject != mObjects.end(); iObject++) {
+            if ((*iObject)->near(worldMouse)) {
+                return *iObject;
+            }
+        }
+    }
+    return NULL;
+}

@@ -13,6 +13,7 @@ class Space
         void draw();
         void insertObject(ConstructedObject* obj);
         void deleteObject(ConstructedObject* obj);
+        ConstructedObject* getObjectUnderCursor();
 
         ofRectangle mBounds;
         std::vector<ConstructedObject*> mObjects;

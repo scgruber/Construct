@@ -13,6 +13,7 @@ class ConstructedPoint : public ConstructedObject
         void draw();
         void placeArbitrary();
         float distanceTo(ConstructedObject* other);
+        bool near(ofVec2f pt);
 
         ofVec2f mPos;
     protected:

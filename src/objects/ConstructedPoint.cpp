@@ -79,3 +79,7 @@ float ConstructedPoint::distanceTo(ConstructedObject* other) {
     // Unable to match to an object type
     return nanf("");
 }
+
+bool ConstructedPoint::near(ofVec2f pt) {
+    return mPos.match(pt, 10.0f);
+}
