@@ -18,6 +18,9 @@ class CoincidentTool : public Tool
         void drawTool();
     protected:
     private:
+        int mcDefaultMode = 0;
+        int mcWaitingForReferenceMode = 1;
+        int mToolMode;
 };
 
 #endif // COINCIDENTTOOL_H
