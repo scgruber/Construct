@@ -48,12 +48,9 @@ void SelectionTool::drawButton()
 void SelectionTool::drawTool() {
     ofVec2f mouse = ofVec2f(ofGetMouseX(), ofGetMouseY());
     if (gApp->mSpace->mBounds.inside(mouse)) {
-        if (gApp->mSpace->getObjectUnderCursor() != NULL) {
-            ofSetColor(0,0,255,128);
-        } else {
-            ofSetColor(255,0,0,128);
+        ConstructedObject* underObject = gApp->mSpace->getObjectUnderCursor();
+        if (underObject != NULL) {
+            underObject->drawHighlight(ofColor(0,255,0));
         }
-        ofFill();
-        ofCircle(mouse.x, mouse.y, 20);
     }
 }

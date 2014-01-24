@@ -14,6 +14,7 @@ class ConstructedLine : public ConstructedObject
         void placeArbitrary();
         float distanceTo(ConstructedObject* other);
         bool near(ofVec2f pt);
+        void drawHighlight(ofColor color);
 
         ofVec2f mBasePt;
         ofVec2f mUnitVector;
