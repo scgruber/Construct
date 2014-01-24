@@ -31,7 +31,7 @@ void Space::draw() {
     /* Selection highlighting */
     for (std::vector<ConstructedObject*>::iterator iObject = mSelection.begin();
             iObject != mSelection.end(); iObject++) {
-        (*iObject)->drawHighlight(ofColor(0,0,255));
+        (*iObject)->drawHighlight(ofColor(0,255,255));
     }
     ofPopMatrix();
 }
