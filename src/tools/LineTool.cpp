@@ -48,3 +48,7 @@ void LineTool::drawButton()
 void LineTool::drawTool() {
 
 }
+
+void LineTool::preSelect() {
+
+}

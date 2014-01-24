@@ -43,18 +43,21 @@ void CoincidentTool::drawButton() {
 void CoincidentTool::drawTool() {
     ofVec2f mouse = ofVec2f(ofGetMouseX(), ofGetMouseY());
     if (gApp->mSpace->mBounds.inside(mouse)) {
-
-        // Draw constraint icon
         ofSetColor(224,0,255);
         ofSetLineWidth(1);
         ofNoFill();
         ofCircle(mouse, 10);
         ofLine(mouse - ofVec2f(12,0), mouse + ofVec2f(12,0));
         ofLine(mouse - ofVec2f(0,12), mouse + ofVec2f(0,12));
+    }
+}
 
+void CoincidentTool::preSelect() {
+    ofVec2f mouse = ofVec2f(ofGetMouseX(), ofGetMouseY());
+    if (gApp->mSpace->mBounds.inside(mouse)) {
         ConstructedObject* underObject = gApp->mSpace->getObjectUnderCursor();
         if (underObject != NULL) {
-            underObject->drawHighlight(ofColor(0,255,0));
+            gApp->mSpace->mPreSelection.push_back(underObject);
         }
     }
 }

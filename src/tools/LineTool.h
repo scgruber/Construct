@@ -16,6 +16,7 @@ class LineTool : public Tool
 
         void drawButton();
         void drawTool();
+        void preSelect();
     protected:
     private:
 };

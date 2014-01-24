@@ -16,6 +16,7 @@ class PointTool : public Tool
 
         void drawButton();
         void drawTool();
+        void preSelect();
     protected:
     private:
 };

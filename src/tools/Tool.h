@@ -11,6 +11,7 @@ class Tool
 
         virtual void drawButton() = 0;
         virtual void drawTool() = 0;
+        virtual void preSelect() = 0;
     protected:
     private:
 };

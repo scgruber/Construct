@@ -16,6 +16,7 @@ class CoincidentTool : public Tool
 
         void drawButton();
         void drawTool();
+        void preSelect();
     protected:
     private:
         int mcDefaultMode = 0;

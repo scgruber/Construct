@@ -20,6 +20,7 @@ class Space
         ofRectangle mBounds;
         std::vector<ConstructedObject*> mObjects;
         std::vector<ConstructedObject*> mSelection;
+        std::vector<ConstructedObject*> mPreSelection;
     protected:
     private:
 };

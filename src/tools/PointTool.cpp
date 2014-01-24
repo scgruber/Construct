@@ -45,3 +45,7 @@ void PointTool::drawButton()
 void PointTool::drawTool() {
 
 }
+
+void PointTool::preSelect() {
+
+}

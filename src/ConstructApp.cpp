@@ -13,7 +13,8 @@ void ConstructApp::setup() {
 
 //--------------------------------------------------------------
 void ConstructApp::update() {
-
+    mSpace->mPreSelection.clear();
+    mToolbar->getActiveTool()->preSelect();
 }
 
 //--------------------------------------------------------------
@@ -21,10 +22,7 @@ void ConstructApp::draw() {
     ofBackground(30,30,30);
     mToolbar->draw();
     mSpace->draw();
-    ofPushMatrix();
-    ofMultMatrix(mSpace->mWorldMatrix);
     mToolbar->getActiveTool()->drawTool();
-    ofPopMatrix();
 }
 
 //--------------------------------------------------------------

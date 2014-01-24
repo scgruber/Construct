@@ -33,6 +33,11 @@ void Space::draw() {
             iObject != mSelection.end(); iObject++) {
         (*iObject)->drawHighlight(ofColor(0,255,255));
     }
+    /* Preselection highlighting */
+    for (std::vector<ConstructedObject*>::iterator iObject = mPreSelection.begin();
+            iObject != mPreSelection.end(); iObject++) {
+        (*iObject)->drawHighlight(ofColor(0,255,0));
+    }
     ofPopMatrix();
 }
 

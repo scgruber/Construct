@@ -16,6 +16,7 @@ class SelectionTool : public Tool
 
         void drawButton();
         void drawTool();
+        void preSelect();
     protected:
     private:
 };

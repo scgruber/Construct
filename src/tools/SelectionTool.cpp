@@ -53,11 +53,15 @@ void SelectionTool::drawButton()
 }
 
 void SelectionTool::drawTool() {
+
+}
+
+void SelectionTool::preSelect() {
     ofVec2f mouse = ofVec2f(ofGetMouseX(), ofGetMouseY());
     if (gApp->mSpace->mBounds.inside(mouse)) {
         ConstructedObject* underObject = gApp->mSpace->getObjectUnderCursor();
         if (underObject != NULL) {
-            underObject->drawHighlight(ofColor(0,255,0));
+            gApp->mSpace->mPreSelection.push_back(underObject);
         }
     }
 }
