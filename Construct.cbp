@@ -46,6 +46,8 @@
 		<Unit filename="src/objects/ConstructedPoint.h" />
 		<Unit filename="src/objects/Space.cpp" />
 		<Unit filename="src/objects/Space.h" />
+		<Unit filename="src/tools/CoincidentTool.cpp" />
+		<Unit filename="src/tools/CoincidentTool.h" />
 		<Unit filename="src/tools/LineTool.cpp" />
 		<Unit filename="src/tools/LineTool.h" />
 		<Unit filename="src/tools/PointTool.cpp" />
