@@ -21,7 +21,10 @@ void ConstructApp::draw() {
     ofBackground(30,30,30);
     mToolbar->draw();
     mSpace->draw();
+    ofPushMatrix();
+    ofMultMatrix(mSpace->mWorldMatrix);
     mToolbar->getActiveTool()->drawTool();
+    ofPopMatrix();
 }
 
 //--------------------------------------------------------------
@@ -50,6 +53,8 @@ void ConstructApp::mousePressed(int x, int y, int button) {
     case 0: /* Left */
         if (x < 70) /* Toolbar Region */ {
             mToolbar->handleLeftClick(x-20, y-20);
+        } else if (mSpace->mBounds.inside(ofVec2f(x,y))) {
+            mToolbar->getActiveTool()->handleLeftClick();
         }
         break;
     case 1: /* Center */

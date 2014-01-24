@@ -85,10 +85,7 @@ bool ConstructedPoint::near(ofVec2f pt) {
 }
 
 void ConstructedPoint::drawHighlight(ofColor color) {
-    ofPushMatrix();
-    ofMultMatrix(gApp->mSpace->mWorldMatrix);
     ofSetColor(color, 128);
     ofFill();
     ofCircle(mPos.x, mPos.y, mcRadius+3);
-    ofPopMatrix();
 }

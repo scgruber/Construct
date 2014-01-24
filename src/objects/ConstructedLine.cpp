@@ -113,12 +113,9 @@ bool ConstructedLine::near(ofVec2f pt) {
 }
 
 void ConstructedLine::drawHighlight(ofColor color) {
-    ofPushMatrix();
-    ofMultMatrix(gApp->mSpace->mWorldMatrix);
     ofVec2f bot = mBasePt - (250*mUnitVector);
     ofVec2f top = mBasePt + (250*mUnitVector);
     ofSetColor(color, 128);
     ofSetLineWidth(mcWidth+6);
     ofLine(bot.x, bot.y, top.x, top.y);
-    ofPopMatrix();
 }
