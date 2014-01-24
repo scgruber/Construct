@@ -9,6 +9,8 @@ Space::Space(int x, int y, int w, int h) {
     mBounds.y = y;
     mBounds.width = w;
     mBounds.height = h;
+
+    mWorldMatrix.makeTranslationMatrix(x + (w/2), y + (h/2), 0);
 }
 
 Space::~Space() {
@@ -20,7 +22,7 @@ void Space::draw() {
     ofFill();
     ofRectRounded(mBounds,5);
     ofPushMatrix();
-    ofTranslate(mBounds.x + (mBounds.width/2), mBounds.y + (mBounds.height/2));
+    ofMultMatrix(mWorldMatrix);
     for (std::vector<ConstructedObject*>::iterator iObject = mObjects.begin();
             iObject != mObjects.end(); iObject++) {
         (*iObject)->draw();

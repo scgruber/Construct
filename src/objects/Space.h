@@ -15,6 +15,8 @@ class Space
         void deleteObject(ConstructedObject* obj);
         ConstructedObject* getObjectUnderCursor();
 
+        ofMatrix4x4 mWorldMatrix;
+
         ofRectangle mBounds;
         std::vector<ConstructedObject*> mObjects;
     protected:
