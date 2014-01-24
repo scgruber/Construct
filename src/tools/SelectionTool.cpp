@@ -25,8 +25,8 @@ void SelectionTool::handleLeftClick()
     if (gApp->mSpace->mBounds.inside(mouse)) {
         ConstructedObject* underObject = gApp->mSpace->getObjectUnderCursor();
         if (underObject != NULL) {
+            gApp->mSpace->mSelection.clear();
             gApp->mSpace->mSelection.push_back(underObject);
-            printf("Added object\n");
         }
     }
 }
