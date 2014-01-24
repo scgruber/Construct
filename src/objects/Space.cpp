@@ -23,9 +23,15 @@ void Space::draw() {
     ofRectRounded(mBounds,5);
     ofPushMatrix();
     ofMultMatrix(mWorldMatrix);
+    /* Object draw */
     for (std::vector<ConstructedObject*>::iterator iObject = mObjects.begin();
             iObject != mObjects.end(); iObject++) {
         (*iObject)->draw();
+    }
+    /* Selection highlighting */
+    for (std::vector<ConstructedObject*>::iterator iObject = mSelection.begin();
+            iObject != mSelection.end(); iObject++) {
+        (*iObject)->drawHighlight(ofColor(0,0,255));
     }
     ofPopMatrix();
 }

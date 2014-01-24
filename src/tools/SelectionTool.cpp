@@ -21,7 +21,14 @@ void SelectionTool::setUp()
 
 void SelectionTool::handleLeftClick()
 {
-
+    ofVec2f mouse = ofVec2f(ofGetMouseX(), ofGetMouseY());
+    if (gApp->mSpace->mBounds.inside(mouse)) {
+        ConstructedObject* underObject = gApp->mSpace->getObjectUnderCursor();
+        if (underObject != NULL) {
+            gApp->mSpace->mSelection.push_back(underObject);
+            printf("Added object\n");
+        }
+    }
 }
 
 void SelectionTool::setDown()
