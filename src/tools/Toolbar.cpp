@@ -2,6 +2,7 @@
 #include "SelectionTool.h"
 #include "PointTool.h"
 #include "LineTool.h"
+#include "CoincidentTool.h"
 
 #include "Toolbar.h"
 
@@ -15,6 +16,8 @@ Toolbar::Toolbar() {
 
     registerTool(1,new PointTool());
     registerTool(1,new LineTool());
+
+    registerTool(2,new CoincidentTool());
 
     // Set active tool to be 0,0
     mActiveTool.first = 0;

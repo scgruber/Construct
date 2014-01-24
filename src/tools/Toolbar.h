@@ -22,7 +22,7 @@ private:
 
     std::pair<int,int> mActiveTool;
 
-    static const size_t mcNumToolSets = 2;
+    static const size_t mcNumToolSets = 3;
     std::vector<Tool*>* mToolSets [mcNumToolSets];
 };
 
