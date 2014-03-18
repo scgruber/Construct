@@ -1,0 +1,325 @@
+\documentclass[11pt]{report}
+
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\setlength{\headsep}{10.2pt}
+\pagestyle{fancy}
+\lhead{Construct: Programming with Geometry}
+\rhead{Sam Gruber}
+
+\usepackage{tabularx}
+\usepackage{graphicx}
+
+\begin{document}
+
+\chapter{The Structure of Programs}
+\label{chap:struct}
+
+A program in Construct is a Definition (see Section~\ref{sec:def}) which follows a well-defined procedure to generate {\it final} objects from {\it initial} objects. 
+Since a program is a Definition, it can used in other programs to asbtract away higher-level operations used for generating more complex objects.
+
+A program is a tuple:
+
+$$(O, D, I, F)$$
+
+$O$ is the set of all objects (see Section \ref{sec:obj}) that are present in the program. 
+$D$ is a function $\rho \to \{\delta_1, \delta_2, \dots\}$ which, given an object $\rho$, produces the set of all definitions (see Section \ref{sec:def}) which describe $\rho$. 
+$I$ is the set of all initial objects. 
+$F$ is the set of all final objects.
+
+Alternatively, $O$ and $D$ may be combined to generate a directed acyclic graph $G$. 
+Any valid topological sorting of $G$ is a valid ordering of runtime execution for the program.
+
+\section{Objects}
+\label{sec:obj}
+
+An object in Construct is a named entity $\rho$ which exists in 2d space. 
+Objects may have position, orientation, magnitude, or any other characteristics which are appropriate based upon their Type (see Section \ref{sec:types}). 
+
+At any point in the execution of a Construct program, any object is a representative of the {\it valid parameter set}. 
+This is a set which contains all parameter combinations which are valid based upon the Definitions (see Section \ref{sec:def}) of the object.
+
+\section{Types}
+\label{sec:types}
+
+Objects in Construct are classified into one of several types:\\
+
+\noindent\begin{tabularx}{\textwidth}{l l l X}
+$\tau$ & $::=$ & $\mathsf{pt}$ & A point in 2d space. \\
+ & & $\mathsf{ln}$ & An infinite line in 2d space. \\
+ & & $\mathsf{circ}$ & A circle in 2d space. \\
+ & & $\mathsf{ang}$ & An angle in 2d space. \\
+ & & $\mathsf{dist}$ & A distance in 2d space. \\
+ & & $\mathsf{set}(\tau)$ & A homogenous collection of objects of type $\tau$. \\
+ & & $\mathsf{grp}(\tau_1, \dots, \tau_n)$ & A ordered collection of objects.
+\end{tabularx}
+
+Additionally, some built-in Definitions (see Section \ref{sec:def}) accept numerals as parameters. 
+Numerals are shown here with a bar, for example $\bar{n}$ is some integer $n$.
+These numerals allow convenient specification of constant values. 
+Programmer-created definitions can not accept numerals as initials. 
+
+\section{Definitions}
+\label{sec:def}
+
+Definitions are rules that are used to describe an object based upon other objects. All of an object's definitions are evaluated at runtime, during Reconciliation (see Section~\ref{sec:reconc}). 
+
+Each Definition is a member of a Definition Class $\delta_\tau$, which is the class of all Definitions that describe objects of type $\tau$. 
+Each Definition's inputs and outputs must be a single object, though groups and sets may be passed.
+A Definition may be totally described in this notation (group syntax simplified for brevity): 
+
+$$\mathsf{defname}[\tau](\rho_1 : \tau_1; \rho_2 : \tau_2; \dots)$$
+
+If the Definition is listed as part of a Definition Class (as below), we omit the bracketed type information for brevity. Additionally, we do not specify the type in our syntax (see Chapter \ref{chap:howto}) because it can be derived from context.
+
+\subsection{Generic Definitions}
+\label{subsec:def-gen}
+
+The following Definitions describe objects of any type $\tau$. \\
+
+\noindent \begin{tabularx}{\textwidth}{l l l X}
+$\delta_{\tau}$ & $::=$ & $\mathsf{id}(\rho : \tau)$ & This object is identical to $\rho$. \\
+ & & $\mathsf{of}(s : \mathsf{set}(\mathsf{\tau}))$ & This object is identical to a member of the set $s$. \\
+ & & $\mathsf{elem}(\bar{m}; \; g : \mathsf{group}(\tau_1, \dots, \tau_n))$ & This object is the $m$th object in the group $g$. If $m > n$ or $\tau_m \neq \tau$, raise $\mathsf{DefErr}$.
+\end{tabularx}
+
+\subsection{Definitions for $\mathsf{pt}$ Objects}
+\label{subsec:def-pt}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\delta_{\mathsf{pt}}$ & $::=$ & $\mathsf{on}(l : \mathsf{ln})$ & This point occurs somewhere along $l$. \\
+ & & $\mathsf{on}(c : \mathsf{circ})$ & This point occurs somewhere along $c$. \\
+ & & $\mathsf{opp}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & This point exists on the opposite side of $l$ from $p$. \\
+ & & $\mathsf{center}(c : \mathsf{circ})$ & This point is at the centerpoint of $c$. \\
+ & & $\mathsf{inside}(c : \mathsf{circ})$ & This point occurs inside of $c$. \\
+ & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & This point is at distance $d$ from $p$. \\
+ & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & This point is at distance $d$ from the nearest location on $l$. \\
+ & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & This point is at distance $d$ from the nearest location on the circumference of circle $c$. \\
+\end{tabularx}
+
+\subsection{Definitions for $\mathsf{ln}$ Objects}
+\label{subsec:def-ln}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\delta_{\mathsf{ln}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & This line passes through $p$. \\
+ & & $\mathsf{intr}(l : \mathsf{ln})$ & This line intersects $l$ at some location. \\
+ & & $\mathsf{par}(l : \mathsf{ln})$ & This line is parallel to $l$. \\
+ & & $\mathsf{perp}(l : \mathsf{ln})$ & This line is perpendicular to $l$. \\
+ & & $\mathsf{skew}(a : \mathsf{ang}; \; l : \mathsf{ln})$ & This line is at angle $a$ to line $l$. \\
+ & & $\mathsf{tan}(c : \mathsf{circ})$ & This line has a point of tangency to $c$ at some location. \\
+ & & $\mathsf{cross}(c : \mathsf{circ})$ & This line intersects $c$ at two locations. \\
+ & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & This line is at distance $d$ from point $p$ at it closest location. \\
+ & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & This line is at distance $d$ to line $l$ at their closest points. In two dimensions, this implies $\mathsf{par}(l)$. \\
+ & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & This line is at distance $d$ from the nearest location on the circumference of circle $c$. \\
+\end{tabularx}
+
+\subsection{Definitions for $\mathsf{circ}$ Objects}
+\label{subsec:def-circ}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\delta_{\mathsf{circ}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & This circle passes through $p$. \\
+ & & $\mathsf{about}(p : \mathsf{circ})$ & This circle is centered on $p$. \\
+ & & $\mathsf{tan}(l : \mathsf{ln})$ & This circle has a point of tangency to $l$ at some location. \\
+ & & $\mathsf{tan}(c : \mathsf{circ})$ & This circle has a point of tangency to $c$ at some location. \\
+ & & $\mathsf{cross}(l : \mathsf{ln})$ & This circle intersects $l$ at two locations. \\
+ & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & This circle's circumference is at distance $d$ from point $p$ at it closest location. \\
+ & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & This circle's circumference is at distance $d$ to line $l$ at their closest points. \\
+ & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & This circle's circumference is at distance $d$ from the nearest location on the circumference of circle $c$. \\
+\end{tabularx}
+
+\subsection{Definitions for $\mathsf{ang}$ Objects}
+\label{subsec:def-ang}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \mathsf{ang})$ & This angle's sweep is equal to the sum of the sweeps of $a$ and $b$. \\
+ & & $\mathsf{split}(a : \mathsf{ang}; \; \bar{n})$ & This angle's sweep is equal to $\frac{1}{n}$ times the sweep of $a$. If $n = 0$, raise $\mathsf{DefErr}$. \\
+ & & $\mathsf{sweep}(\bar{n})$ & The sweep of this angle is equal to $n$ (in degrees). \\
+ & & $\mathsf{between}(k : \mathsf{ln}; \; l : \mathsf{ln})$ & This angle's sweep is the sweep between the lines $k$ and $l$. \\
+\end{tabularx}
+
+\subsection{Definitions for $\mathsf{dist}$ Objects}
+\label{subsec:def-dist}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \mathsf{dist})$ & This distance is equal to the sum of the lengths of $d$ and $t$. \\
+ & & $\mathsf{div}(d : \mathsf{dist}; \; \bar{n})$ & This distance is equal to $\frac{1}{n}$ times the length of $d$. If $n = 0$, raise $\mathsf{DefErr}$. \\
+ & & $\mathsf{length}(\bar{n})$ & This distance is equal to $n$.\\
+ & & $\mathsf{span}(p : \mathsf{pt}; \; q : \mathsf{pt})$ & This distance is equal to the distance from $p$ to $q$. \\
+ & & $\mathsf{span}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & This distance is equal to the shortest distance from $p$ to $l$. \\
+ & & $\mathsf{span}(p : \mathsf{pt}; \; c : \mathsf{circ})$ & This distance is equal to the shortest distance from $p$ to $c$. \\
+ & & $\mathsf{span}(k : \mathsf{ln}; \; l : \mathsf{ln})$ & This distance is equal to the shortest distance from $k$ to $l$. \\
+ & & $\mathsf{span}(l : \mathsf{ln}; \; c : \mathsf{circ})$ & This distance is equal to the shortest distance from $l$ to $c$. \\
+ & & $\mathsf{span}(b : \mathsf{circ}; \; c : \mathsf{circ})$ & This distance is equal to the shortest distance from $b$ to $c$. \\
+
+\end{tabularx}
+
+\subsection{Definitions for $\mathsf{set}(\tau)$ Objects}
+\label{subsec:def-set}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ & This set has no members. \\
+ & & $\mathsf{size}(\bar{n})$ & The number of members of this set. \\
+ & & $\mathsf{include}(\rho : \tau; s : \mathsf{set}(\tau))$ & This set contains all members of the set $s$ and additionally contains $\rho$. \\
+ & & $\mathsf{exclude}(\rho : \tau; s : \mathsf{set}(\tau))$ & This set contains all members of the set $s$ except $\rho$. If $\rho$ is not a member of $s$, raise $\mathsf{DefErr}$.
+\end{tabularx}
+
+\subsection{Definitions for $\mathsf{grp}(\tau_1, \dots , \tau_n)$ Objects}
+\label{subsec:def-grp}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\delta_{\mathsf{grp}}$ & $::=$ & $\mathsf{collect}(\rho_1 : \tau_1, \dots, \rho_n : \tau_n)$ & This group contains $\rho_1, \dots, \rho_n$.
+\end{tabularx}
+
+
+\section{Modifiers}
+\label{sec:mods}
+
+Modifiers are higher-level constructs than Definitions which further specify program behavior.
+
+\subsection{Modifiers for Objects}
+\label{subsec:mods-obj}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\mu_{\rho}$ & $::=$ & $\mathsf{initial}$ & $\rho$ is given as an input to the program. \\
+ & & $\mathsf{final}$ & $\rho$ is the result of the program. \\
+ & & $\mathsf{unique}$ & The Definitions which specify $\rho$ must resolve to exactly one possible set of parameters. If $\rho$ is not uniquely defined, raise $\mathsf{DefErr}$.
+\end{tabularx}
+
+\subsection{Modifiers for Definitions}
+\label{subsec:mods-defs}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ & The negation of this Definition. \\
+ & & $\mathsf{handle}(\delta_\tau')$ & If this Definition raises a runtime error, instead apply $\delta_\tau'$. \\
+ & & $\mathsf{each}$ & Applies this Definition over all members of a set, specifying a new Definition in the class $\delta_{\mathsf{set}(\tau)}$. If $\mathsf{DefErr}$ is raised at any point, this whole definition raises $\mathsf{DefErr}$. \\
+ & & $\mathsf{filter}$ & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
+\end{tabularx}
+
+\subsection{Modifiers for Graphs}
+\label{subsec:mods-graphs}
+\begin{tabularx}{\textwidth}{l l l X}
+$\mu_{G}$ & $::=$ & $\mathsf{local}$ & Produces a local definition from this graph. \\
+\end{tabularx}
+
+
+\chapter{Execution}
+\label{chap:exec}
+
+\section{Runtime Errors}
+\label{sec:runtime-errors}
+
+\begin{tabularx}{\textwidth}{l l l X}
+$\epsilon$ & $::=$ & $\mathsf{DefErr}$ & A set of Definitions (see Section \ref{sec:def}) could not be Reconciled (see Section \ref{sec:reconc}) to a valid object.
+\end{tabularx}
+
+\section{Reconciliation}
+\label{sec:reconc}
+
+When an object in the Evaluation DAG becomes definable (when all of its immediate prerequisites are defined), the Construct runtime begins a process of Reconciliation. 
+During Reconciliation the runtime attempts to find a state for the object which satisfies all of the Definitions applied to it. 
+If this is not possible, the runtime declares $\mathsf{DefErr}$.
+
+\chapter{How to Program in Construct}
+\label{chap:howto}
+
+\section{Example Programs}
+\label{sec:example}
+
+\subsection{Triangle Area}
+\label{subsec:triarea}
+
+\noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
+\raisebox{-.5\height}{\includegraphics{../triarea/stage1.pdf}} & {\tt initial grp(pt;pt;pt) tri \newline
+        pt p1.elem(1,tri) \newline
+        pt p2.elem(2,tri) \newline
+        pt p3.elem(3,tri) } & {\small Start with three points that describe the triangle.} \\
+\hline
+\raisebox{-.5\height}{\includegraphics{../triarea/stage2.pdf}} & {\tt ln l1.thru(p1).thru(p2)} & {\small Add a line along one of the triangle's sides.} \\
+\hline
+\raisebox{-.5\height}{\includegraphics{../triarea/stage3.pdf}} & {\tt dist two.length(2) \newline
+        ln l2.thru(p1).thru(p3) \newline
+        pt p4.on(l1).to(p1;two).opp(p2;l2)} & {\small Create a new point 2 units outside the triangle along the line.} \\
+\hline
+\raisebox{-.5\height}{\includegraphics{../triarea/stage4.pdf}} & {\tt ln l3.thru(p3).thru(p4) \newline
+        ln l4.thru(p2).par(l3) \newline
+        pt p5.on(l1).on(l4)} & {\small The triangle (p1,p4,p5) has the same area as the original triangle.} \\
+\hline
+\raisebox{-.5\height}{\includegraphics{../triarea/stage5.pdf}} & {\tt ln l5.thru(p5).par(l1) \newline
+        ln l6.thru(p4).perp(l1) \newline
+        pt p6.on(l5).on(l6)} & {\small The triangle (p1,p4,p6) has the same area as the original triangle.} \\
+\hline
+\raisebox{-.5\height}{\includegraphics{../triarea/stage6.pdf}} & {\tt final dist area.span(p4;p6)} & {\small This distance is the area because the base of the triangle is 2, so the height equals the area.}
+\end{tabularx}
+
+\subsection{Adjacent Segments}
+\label{subsec:adjsegs}
+
+This program demonstrates a verification definition. Unlike other definitions which produce a resulting object, this definition just ensures that some relationships are satisfied over its inputs. Verifications may be used as part of extracting objects from sets, or as contracts in programs.
+
+Here we use an abbreviated textual syntax for referencing objects in groups. {\tt obj[1][2]} references the second item in a group which is the first item of a group object named {\tt obj}. This notation is similar to array addressing in modern textual programming langauges. \\
+
+\noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
+\hspace{3.5cm}\vspace{1cm} & {\tt initial grp(grp(ln;circ);\newline grp(ln;circ)) segs } & {\small Start with two segments (represented by a line and a bounding circle). } \\
+\hline
+\vspace{0.5cm} & 
+{\tt
+pt adj.on(segs[1][1]) \newline
+      .on(segs[1][2]) \newline
+      .on(segs[2][1]) \newline
+      .on(segs[2][2])
+} & {\small Verify that the lines and circles all intersect at a common point.} \\
+\end{tabularx}\\\\
+
+If this simple definition fails, then we know that our line segments are not adjacent.
+
+\subsection{Reduce Polygon to Triangle}
+\label{subsec:reducepoly}
+
+TODO
+
+\subsection{Polygon Area}
+\label{subsec:polyarea}
+
+The next example program incorporates the previous examples and calls them as user-created definitions. We use the keyword {\tt void} to where a verification definition produces no resulting object; in the geometric interface, this is invisible to the programmer.
+
+User-created definitions are enclosed in curly braces to distinguish them from the built-in definitions. Local definitions are also enclosed in curly braces, but not named. \\
+
+\noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
+\hspace{3.5cm} & {\tt final set(grp(ln;circ)) tri.local\{ \newline
+  initial set(grp(ln;circ)) poly.size(3) \newline
+  void.\{Closed Polygon\}(poly) \newline
+  final poly \newline
+\}} & {\small If the polygon has three sides, then it's already a triangle. } \\
+\hline
+ & {\tt handle( local\{ \newline
+  initial set(grp(ln;circ)) poly \newline
+  void.\{Closed Polygon\}(poly) \newline
+  final poly3.\{Reduce Polygon to \newline Triangle\}(poly) \newline
+\})} & {\small If the polygon has more than three sides, we reduce it to three. } \\
+\hline
+ & {\tt grp(ln;circ) A.of(tri) \newline
+        grp(ln;circ) B.of(tri) \newline
+        .not id(A) \newline
+        grp(ln;circ) C.of(tri) \newline
+        .not id(A) \newline
+        .not id(B) } & {\small Get the three sides. } \\
+\hline
+\vspace{1.5cm} & {\tt pt p1.on(A[1]).on(B[1]) \newline
+        pt p2.on(A[1]).on(C[1]) \newline
+        pt p3.on(B[1]).on(C[1])} & {\small Get the three vertices. } \\
+\hline
+\vspace{1.5cm} & {\tt grp(pt;pt;pt) verts.collect(p1;p2;p3) \newline
+        final dist area.\{Triangle Area\}(verts)} & {\small Use the triangle area definition. } \\
+\end{tabularx}\\\\
+
+% \section{Interfaces}
+% \label{sec:data}
+
+% \subsection{Geometry Markup}
+% \label{sec:gml}
+
+% A file format is proposed to allow description of well-defined objects in 2d space. 
+% The Construct runtime makes use of these files for input and output.
+
+\end{document}
