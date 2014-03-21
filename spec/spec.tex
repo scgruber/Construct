@@ -5,13 +5,130 @@
 \setlength{\headheight}{15.2pt}
 \setlength{\headsep}{10.2pt}
 \pagestyle{fancy}
+
+\title{\bf {\Huge Construct}:\\{\LARGE Programming with Geometry}}
+\author{{\Large Sam Gruber}\\Carnegie Mellon University}
+
 \lhead{Construct: Programming with Geometry}
 \rhead{Sam Gruber}
 
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{enumerate}
 
 \begin{document}
+
+\maketitle
+
+\pagebreak
+\null\thispagestyle{empty}
+\pagebreak
+
+\chapter{Geometric Syntax}
+\label{chap:syntax}
+
+Construct proposes a new geometric method for creating programs. 
+Most existing languages offer a textual syntax for composition, which offers an essentially linear approach to writing programs. 
+A program in Construct is created by associating geometric objects and relationships in a 2d space. 
+This allows the programmer to explore the design of a program in a more open manner, and facilitates the expression of programs which need not have a linear evaluation order. 
+
+Furthermore, a geometric syntax provides a format that can easily express problems which have a geometric or visual interpretation. 
+Points, lines, and circles are all primitive objects in Construct, and are presented to the programmer visually, harnessing the brain's highly evolved visual reasoning systems. 
+
+While it is possible to perform symbolic computations in Construct, they are not the target problem set. 
+Therefore, a programmer might find certain symbolic tasks, such as text manipulation, as roundabout in Construct as geometric tasks are in a textual syntax.
+
+\section{The Programming Environment}
+\label{sec:environ}
+
+Because Construct does not use a textual syntax, programs cannot be composed in a text editor. 
+Rather, they require an environment specifically suited to geometric programming. 
+This section describes the fundamental characteristics of such an environment and presents a design for its interface.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{interface.pdf}
+  \caption{An interface design for the programming environment (TODO: detail)}
+  \label{fig:interface}
+\end{figure}
+
+Figure \ref{fig:interface} shows a general design for the interface, highlighting important regions, particularly:
+
+\begin{enumerate}[(A)]
+  \item Menu Bar \\
+    The Menu Bar provides access to functionality which has no representation in the language of the program itself, such as loading or saving programs or starting a live interpreter.
+  \item Tool Palettes \\
+    Tool Palettes contain commands which create new elements that have meaning in the program. 
+    The three main palettes provide commands for Instantiation (see Section \ref{sec:inst}), Definition (see Section \ref{sec:applydef}) and Modification (see Section \ref{sec:applymod}).
+  \item Program Space \\
+    The Program Space shows a data view of the Construct program. 
+    It allows the the programmer to view directly how the program will behave, using representative examples for objects which are not precisely defined. 
+    This programming-by-examples approach mimics the manner in which geometry is often taught and worked with, reducing the mental load on the programmer to imagine the meaning of the geometric relationships.
+  \item Program Graph \\
+    The Program Graph shows the dependency relationships between the objects in Construct. 
+    Since all definitions flow from a group of predefined objects to an-as-yet-undefined object, the Program Graph produces a directed acyclic graph (DAG).
+  \item User Content Drawers \\
+    The User Content Drawers contain definitions which have been created by the programmer as abstractions.
+    The programmer may use these definitions in a similar manner to using the built-in definitions.
+\end{enumerate}
+
+\section{Object Instantiation}
+\label{sec:inst}
+
+To begin working with any of the objects in Construct, the programmer must first {\it instantiate} them. 
+One tool palette in the programming environment provides commands that instantiate new objects. 
+
+\begin{figure}[h]
+  \caption{A newly-instantiated point object}
+  \label{fig:new-point}
+\end{figure}
+
+When first instantiated, a new Construct object is undefined. 
+In the case of the point object in Figure \ref{fig:new-point}, this means that it could have any position in the 2d space of the program. 
+A line object could have any position and any orientation.
+A circle could have any center position and any radius. 
+Distances and angles can have any size.
+
+Also notice that the instantiation operation does not require the programmer to name the object. 
+In a textual syntax, names are necessary in order for both the programmer and the parser to understand what objects are being used at any stage of the program.
+In Construct, the programmer can simply {\it see} the difference between objects.
+The system, similarly is free to reference objects directly, since the programming environment can provide an unambiguous description of which objects are being used.
+Naming objects is supported in Construct, for the convenience of the programmer, but the names are simply discarded for the purposes of execution.
+
+\section{Applying Definitions}
+\label{sec:applydef}
+
+In order for objects to have any meaning, the programmer applies definitions to them. 
+These definitions establish relationships between the objects in a Construct program. 
+Since definitions are relationships between objects, almost all of them require multiple objects to be instantiated in the program space. 
+Section \ref{sec:def}lists the definitions which are built into Construct.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{definition.pdf}
+  \caption{The interaction to apply a definition to an object}
+  \label{fig:def-interaction}
+\end{figure}
+
+Applying a definition is an infix operation in the programming environment. 
+First, the programmer selects the object which will be defined. 
+Then, the programmer selects a definition from a tool palette in the programming environment. 
+Finally, the programmer selects the objects which are referenced by the defintion.
+Figure \ref{fig:def-interaction} shows how these interactions may appear in the programming environment, using the $\mathsf{on}$ definition as an example.
+
+We can imagine a similar statement in a textual language:
+
+\begin{verbatim}
+Point x = arbitrary_on_line(l);
+\end{verbatim}
+
+\noindent though this does not capture 
+
+\section{Applying Modifications}
+\label{sec:applymod}
+
+The process for applying modifications is very similar to that of applying definitions. 
+
 
 \chapter{The Structure of Programs}
 \label{chap:struct}
@@ -21,12 +138,10 @@ Since a program is a Definition, it can used in other programs to asbtract away 
 
 A program is a tuple:
 
-$$(O, D, I, F)$$
+$$(O, D)$$
 
 $O$ is the set of all objects (see Section \ref{sec:obj}) that are present in the program. 
 $D$ is a function $\rho \to \{\delta_1, \delta_2, \dots\}$ which, given an object $\rho$, produces the set of all definitions (see Section \ref{sec:def}) which describe $\rho$. 
-$I$ is the set of all initial objects. 
-$F$ is the set of all final objects.
 
 Alternatively, $O$ and $D$ may be combined to generate a directed acyclic graph $G$. 
 Any valid topological sorting of $G$ is a valid ordering of runtime execution for the program.
@@ -196,10 +311,10 @@ $\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ & The negation of this Definition. 
  & & $\mathsf{filter}$ & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
 \end{tabularx}
 
-\subsection{Modifiers for Graphs}
+\subsection{Modifiers for Subprograms}
 \label{subsec:mods-graphs}
 \begin{tabularx}{\textwidth}{l l l X}
-$\mu_{G}$ & $::=$ & $\mathsf{local}$ & Produces a local definition from this graph. \\
+$\mu_{G}$ & $::=$ & $\mathsf{local}$ & Produces a local definition from this program graph. This modifier is used in conjunction with the $\mathsf{handle}$, $\mathsf{each}$ and $\mathsf{filter}$ modifiers to apply more complex behaviors.\\
 \end{tabularx}
 
 
