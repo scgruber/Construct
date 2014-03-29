@@ -52,7 +52,7 @@ This section describes the fundamental characteristics of such an environment an
   \label{fig:interface}
 \end{figure}
 
-Figure \ref{fig:interface} shows a general design for the interface, highlighting important regions, particularly:
+Figure \ref{fig:interface} shows a general design for the interface, highlighting the five important regions:
 
 \begin{enumerate}[(A)]
   \item Menu Bar \\
@@ -79,6 +79,10 @@ To begin working with any of the objects in Construct, the programmer must first
 One tool palette in the programming environment provides commands that instantiate new objects. 
 
 \begin{figure}[h]
+  \centering
+  \fbox{
+    \begin{minipage}{2in}\hfill\vspace{1.5in}\end{minipage}
+  }
   \caption{A newly-instantiated point object}
   \label{fig:new-point}
 \end{figure}
@@ -101,7 +105,7 @@ Naming objects is supported in Construct, for the convenience of the programmer,
 In order for objects to have any meaning, the programmer applies definitions to them. 
 These definitions establish relationships between the objects in a Construct program. 
 Since definitions are relationships between objects, almost all of them require multiple objects to be instantiated in the program space. 
-Section \ref{sec:def}lists the definitions which are built into Construct.
+Section \ref{sec:def} lists the definitions which are built into Construct.
 
 \begin{figure}[h]
   \centering
@@ -119,15 +123,106 @@ Figure \ref{fig:def-interaction} shows how these interactions may appear in the 
 We can imagine a similar statement in a textual language:
 
 \begin{verbatim}
-Point x = arbitrary_on_line(l);
+    Point x = arbitrary_on_line(l);
 \end{verbatim}
 
-\noindent though this does not capture 
+However, the effect at runtime of executing this part of the program is not as linear as the textual equivalent suggests.
+In most cases, the object which is being defined will be updated to conform to the new definition's requirements, and other data (if not dependent on the object being defined) will not change.
+
+However, in some cases, the new definition constrains the object in a way that is unsatisfiable. 
+In these circumstances, the rest of the program will be recalculated in an attempt to satisfy the new definition. 
+If this is successful, the programmer may see many objects in the program space rearrange. 
+If it is unsuccessful, the programmer will be alerted that the definitions are unsatisfiable.
+More information about errors is presented in Section \ref{sec:failure}.
+
+\subsection{Implicit Definitions}
+\label{subsec:implicit-def}
+
+Some definitions which are represented explicitly in the internal representation are in fact implicitly applied in the programming environment.
+
+One such definition is the $\mathsf{elem}$ definition used to extract objects from groups. 
+In the geometric syntax, there is no need to explicitly break objects out of groups, because they are already visible to the programmer in the data view.
 
 \section{Applying Modifications}
 \label{sec:applymod}
 
-The process for applying modifications is very similar to that of applying definitions. 
+\subsection{Object Modifications}
+\label{subsec:mod-obj}
+
+The process of applying object modifications (Section \ref{subsec:mods-obj}) is quite similar to that of applying definitions.
+The programmer first selects the object to be modified, and then selects the modification from a tool palette.
+
+\subsection{Definition Modifications}
+\label{subsec:mod-def}
+
+The interactions for definitions modifications vary by modification.
+Each of them are outlined below:
+
+\subsubsection{$\mathsf{not}$ Modification}
+
+There are two circumstances when the $\mathsf{not}$ modification can be applied. 
+If the programmer wishes to negate a definition which is currently being applied, then after selecting the definition from the appropriate tool palette, the programmer may select $\mathsf{not}$ from its tool palette.
+When the definition application is made, it will be negated.
+
+If the programmer wishes to negate a definition which has already been applied to an object, the process is similar to the application of object modifications.
+The programmer first selects the definition, and then selects $\mathsf{not}$ from its tool palette.
+
+\subsubsection{$\mathsf{handle}$ Modification}
+
+$\mathsf{handle}$ requires an existing definition to be defined for the object $\rho$. 
+The programmer selects this definition, then selects the $\mathsf{handle}$ modifier from its tool palette.
+The programmer must then select another definition to serve as the ``failure'' case of the $\mathsf{handle}$. 
+This definition is automatically applied to $\rho$. 
+The programmer must specify reference objects for the definition as in normal definition application.
+
+\subsubsection{$\mathsf{each}$ Modification}
+
+The $\mathsf{each}$ modification must be specified during the initial definition application process.
+First, the programmer selects the object to be defined as normal. 
+This object must have type $\mathsf{set}(\tau)$.
+Then the programmer activates the $\mathsf{each}$ command from a tool palette, and then selects some definition $\delta_\tau$ appropriate to an object of type $\tau$.
+Finally, the reference object must be of type $\mathsf{set}(\tau')$, where $\tau'$ is the type of the reference object for $\delta_\tau$.
+
+\subsubsection{$\mathsf{filter}$ Modification}
+
+The interaction to apply a $\mathsf{filter}$ modification is identical to that of $\mathsf{each}.$
+
+\section{Creating Local Definitions}
+\label{sec:create-local}
+
+Local definitions (see Section \ref{sec:local}) allow the programmer to wrap up complex derivations of objects into a single definition without making that internal logic available to other programs.
+They are similar to anonymous functions in traditional text-based languages.
+
+\begin{figure}[h]
+  \centering
+  \fbox{
+    \begin{minipage}{3in}\hfill\vspace{2in}\end{minipage}
+  }\;
+  \fbox{
+    \begin{minipage}{3in}\hfill\vspace{2in}\end{minipage}
+  }
+  \caption{The appearance of a local definition in the program graph (left) and space (right)}
+  \label{fig:local}
+\end{figure}
+
+Local definitions can be created from the beginning in a manner similar to the method of applying definitions.
+The programmer selects the object to define, then selects the $\mathsf{local}$ tool palette command. 
+Unlike a predefined definition, the local definition has no references already defined.
+
+The program space and graph will then appear similar to what is shown in Figure \ref{fig:local}. 
+The object which is to be defined will appear locally, marked as $\mathsf{final}$. 
+The programmer may then build up the objects and definitions used to define the final object.
+If the programmer references an object outside the local definition (distinguishable by the gray overlay that fades those objects), that object will automatically become a reference for the local definition and appear as an $\mathsf{initial}$ inside the local definition.
+
+\section{Definition, Not Manipulation}
+\label{sec:not-manip}
+
+It is important to understand that while the Construct programming environment apppears in many ways similar to a vector graphics editor, it does not operate by direct manipulation of objects.
+The nature of the objects in the program space is given by definition rules which establish relationships between the objects. 
+Actually dragging or otherwise transforming the particular objects shown in the program space, while potentially supported for clarification purposes, will have no effect on the meaning of a Construct program.
+
+The program space is presented to the programmer to provide an example of the data in the program at runtime, lifting the burden of mental simulation of the effects of the code. 
+Construct is therefore not a programming by example\footnote{cite DCS Pygmalion} system, but rather {\it programming with examples}\footnote{Brad: where does this originate?}.
 
 
 \chapter{The Structure of Programs}
@@ -141,7 +236,7 @@ A program is a tuple:
 $$(O, D)$$
 
 $O$ is the set of all objects (see Section \ref{sec:obj}) that are present in the program. 
-$D$ is a function $\rho \to \{\delta_1, \delta_2, \dots\}$ which, given an object $\rho$, produces the set of all definitions (see Section \ref{sec:def}) which describe $\rho$. 
+$D$ is a function $\rho \to \{\delta_1, \delta_2, \dots\}$ which, given an object $\rho$, produces the set of all definitions (see Section \ref{sec:def}) which describe $\rho$.
 
 Alternatively, $O$ and $D$ may be combined to generate a directed acyclic graph $G$. 
 Any valid topological sorting of $G$ is a valid ordering of runtime execution for the program.
@@ -194,9 +289,10 @@ If the Definition is listed as part of a Definition Class (as below), we omit th
 The following Definitions describe objects of any type $\tau$. \\
 
 \noindent \begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\tau}$ & $::=$ & $\mathsf{id}(\rho : \tau)$ & This object is identical to $\rho$. \\
- & & $\mathsf{of}(s : \mathsf{set}(\mathsf{\tau}))$ & This object is identical to a member of the set $s$. \\
- & & $\mathsf{elem}(\bar{m}; \; g : \mathsf{group}(\tau_1, \dots, \tau_n))$ & This object is the $m$th object in the group $g$. If $m > n$ or $\tau_m \neq \tau$, raise $\mathsf{DefErr}$.
+$\delta_{\tau}$ & $::=$ & $\mathsf{null}$ & This definition has no effect on this object. It may be used with the $\mathsf{handle}$ modifier (see Section \ref{subsec:mods-defs}). \\
+ & & $\mathsf{id}(\rho : \tau)$ & This object is identical to $\rho$. \\
+ & & $\mathsf{of}(s : \mathsf{set}(\mathsf{\tau}))$ & This object is identical to a member of the set $s$. This definition is added implicitly in the programming environment when the user manipulates a set member. \\
+ & & $\mathsf{elem}(\bar{m}; \; g : \mathsf{group}(\tau_1, \dots, \tau_n))$ & This object is the $m$th object in the group $g$. If $m > n$ or $\tau_m \neq \tau$, raise $\mathsf{DefErr}$. This definition is added implicitly in the programming environment when the user manipulates an object inside a group.
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{pt}$ Objects}
@@ -311,10 +407,10 @@ $\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ & The negation of this Definition. 
  & & $\mathsf{filter}$ & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
 \end{tabularx}
 
-\subsection{Modifiers for Subprograms}
-\label{subsec:mods-graphs}
+\section{Local}
+\label{sec:local}
 \begin{tabularx}{\textwidth}{l l l X}
-$\mu_{G}$ & $::=$ & $\mathsf{local}$ & Produces a local definition from this program graph. This modifier is used in conjunction with the $\mathsf{handle}$, $\mathsf{each}$ and $\mathsf{filter}$ modifiers to apply more complex behaviors.\\
+$\lambda$ & $::=$ & $\mathsf{local}(G)$ & Produces a local definition from the program subgraph $G$. This can be used in conjunction with the $\mathsf{handle}$, $\mathsf{each}$ and $\mathsf{filter}$ modifiers to apply more complex behaviors.\\
 \end{tabularx}
 
 
@@ -333,7 +429,23 @@ $\epsilon$ & $::=$ & $\mathsf{DefErr}$ & A set of Definitions (see Section \ref{
 
 When an object in the Evaluation DAG becomes definable (when all of its immediate prerequisites are defined), the Construct runtime begins a process of Reconciliation. 
 During Reconciliation the runtime attempts to find a state for the object which satisfies all of the Definitions applied to it. 
-If this is not possible, the runtime declares $\mathsf{DefErr}$.
+It selects a candidate object from the set of all objects which satisfy the constraints placed upon it.
+
+\section{Failure}
+\label{sec:failure}
+
+During runtime, it is possible for Reconciliation to fail by an object possessing conflicting definitions. 
+
+This may initially occur as a result of choices made during the reconciliation of ancestor objects in the program. 
+The runtime will first try to resolve the failure by redefining these ancestors in a way that will produce a valid result. 
+If this is unsuccessful, the runtime declares $\mathsf{DefErr}$.
+
+A runtime error is then propagated back along the chain of ancestor definitions from the definiton which triggered it. 
+If the runtime encounters a definition which has a $\mathsf{handle}$ modifier attached to it, it will stop this propagation and attempt to redefine the program using the alternate definition.
+This definition itself may fail, which repeats this process on the changed program graph.
+
+If the runtime error propagates all the way to to the initial objects at the top level of the program, the program has failed. 
+The user should be alerted to the failure, and if the program is being evalauated in the programming environment, specific debugging information should be made available.
 
 \chapter{How to Program in Construct}
 \label{chap:howto}
