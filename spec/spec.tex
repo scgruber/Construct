@@ -381,13 +381,13 @@ Should this be deemed necessary, a design similar to $\mathsf{of}$ would be appr
 
 \noindent\begin{tabularx}{\textwidth}{l l l c X}
 $\delta_{\mathsf{pt}}$ & $::=$ & $\mathsf{on}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/on}} & This point occurs somewhere along $l$. \\
- & & $\mathsf{on}(c : \mathsf{circ})$ &  & This point occurs somewhere along $c$. \\
+ & & $\mathsf{on}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/on}} & This point occurs somewhere along $c$. \\
  & & $\mathsf{opp}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/opp}} & This point exists on the opposite side of $l$ from $p$. \\
  & & $\mathsf{center}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/center}} & This point is at the center-point of $c$. \\
  & & $\mathsf{inside}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/inside}} & This point occurs inside of $c$. \\
  & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This point is at distance $d$ from $p$. \\
- & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ &  & This point is at distance $d$ from the nearest location on $l$. \\
- & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ &  & This point is at distance $d$ from the nearest location on the circumference of circle $c$. \\
+ & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This point is at distance $d$ from the nearest location on $l$. \\
+ & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This point is at distance $d$ from the nearest location on the circumference of circle $c$. \\
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{ln}$ Objects}
@@ -402,22 +402,22 @@ $\delta_{\mathsf{ln}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{-.
  & & $\mathsf{tan}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/tan}} & This line has a point of tangency to $c$ at some location. \\
  & & $\mathsf{cross}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/cross}} & This line intersects $c$ at two locations. \\
  & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This line is at distance $d$ from point $p$ at it closest location. \\
- & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ &  & This line is at distance $d$ to line $l$ at their closest points. In two dimensions, this implies $\mathsf{par}(l)$. \\
- & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ &  & This line is at distance $d$ from the nearest location on the circumference of circle $c$. \\
+ & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This line is at distance $d$ to line $l$ at their closest points. In two dimensions, this implies $\mathsf{par}(l)$. \\
+ & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This line is at distance $d$ from the nearest location on the circumference of circle $c$. \\
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{circ}$ Objects}
 \label{subsec:def-circ}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\mathsf{circ}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & This circle passes through $p$. \\
- & & $\mathsf{about}(p : \mathsf{circ})$ & This circle is centered on $p$. \\
- & & $\mathsf{tan}(l : \mathsf{ln})$ & This circle has a point of tangency to $l$ at some location. \\
- & & $\mathsf{tan}(c : \mathsf{circ})$ & This circle has a point of tangency to $c$ at some location. \\
- & & $\mathsf{cross}(l : \mathsf{ln})$ & This circle intersects $l$ at two locations. \\
- & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & This circle's circumference is at distance $d$ from point $p$ at it closest location. \\
- & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & This circle's circumference is at distance $d$ to line $l$ at their closest points. \\
- & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & This circle's circumference is at distance $d$ from the nearest location on the circumference of circle $c$. \\
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\delta_{\mathsf{circ}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/thru}} & This circle passes through $p$. \\
+ & & $\mathsf{about}(p : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/center}} & This circle is centered on $p$. \\
+ & & $\mathsf{tan}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/tan}} & This circle has a point of tangency to $l$ at some location. \\
+ & & $\mathsf{tan}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/tan}} & This circle has a point of tangency to $c$ at some location. \\
+ & & $\mathsf{cross}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/cross}} & This circle intersects $l$ at two locations. \\
+ & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This circle's circumference is at distance $d$ from point $p$ at it closest location. \\
+ & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This circle's circumference is at distance $d$ to line $l$ at their closest points. \\
+ & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This circle's circumference is at distance $d$ from the nearest location on the circumference of circle $c$. \\
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{ang}$ Objects}
