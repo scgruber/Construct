@@ -348,6 +348,9 @@ $$\mathsf{defname}[\tau](\rho_1 : \tau_1; \rho_2 : \tau_2; \dots)$$
 If the Definition is listed as part of a Definition Class (as below), we omit the bracketed type information for brevity. 
 Additionally, we do not specify the type in our syntax (see Chapter \ref{chap:howto}) because it can be derived from context.
 
+Definition icons, like type icons, appear in the tool palettes of the programming interface. 
+They also appear in the program graph as annotations to the edges in the graph, in order to quickly explain the relationships between objects in the program.
+
 \subsection{Generic Definitions}
 \label{subsec:def-gen}
 
@@ -359,6 +362,19 @@ $\delta_{\tau}$ & $::=$ & $\mathsf{null}$ & \raisebox{-.5\height}{\includegraphi
  & & $\mathsf{of}(s : \mathsf{set}(\mathsf{\tau}))$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/of}} & This object is identical to a member of the set $s$. This definition is added implicitly in the programming environment when the user manipulates a set member. \\
  & & $\mathsf{elem}(\bar{m}; \; g : \mathsf{group}(\tau_1, \dots, \tau_n))$ & [impl] & This object is the $m$th object in the group $g$. If $m > n$ or $\tau_m \neq \tau$, raise $\mathsf{DefErr}$. This definition is added implicitly in the programming environment when the user manipulates an object inside a group.
 \end{tabularx}
+
+The icons that represent these definitions were again chosen to align with symbols familiar to the programmer.
+The icon for $\mathsf{null}$ bas been chosen to resemble the common slashed-circle negation symbol, though special attention was paid to create an icon which is visibly distinct from the similar icons for $\mathsf{cross}$ (see Section \ref{subsec:def-ln}).
+
+The $\mathsf{id}$ icon was chosen to resemble the mathematical equivalence operator $\equiv$, rather than the more common equality symbol $=$ because the latter symbol could be easily confused with the usual symbol for parallel lines, used by $\mathsf{par}$ (see Section \ref{subsec:def-ln}).
+
+The $\mathsf{of}$ symbol, as the extraction device for sets, has an icon very similar to the $\mathsf{set}$ type shown in Section \ref{sec:types}.
+A single member of the set is distinguished in the $\mathsf{of}$ icon to call attention to its purpose.
+
+One definition listed here, $\mathsf{elem}$, does not have an iconic representation. 
+This is because both in the program space and program graph, using an element of a tuple is most clearly presented as an implicit operation to the programmer. 
+This definition exists only in the internals of the language and is never exposed to the programmer, and so does not require an iconic representation. 
+Should this be deemed necessary, a design similar to $\mathsf{of}$ would be appropriate.
 
 \subsection{Definitions for $\mathsf{pt}$ Objects}
 \label{subsec:def-pt}
