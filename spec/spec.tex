@@ -374,7 +374,6 @@ A single member of the set is distinguished in the $\mathsf{of}$ icon to call at
 One definition listed here, $\mathsf{elem}$, does not have an iconic representation. 
 This is because both in the program space and program graph, using an element of a tuple is most clearly presented as an implicit operation to the programmer. 
 This definition exists only in the internals of the language and is never exposed to the programmer, and so does not require an iconic representation. 
-Should this be deemed necessary, a design similar to $\mathsf{of}$ would be appropriate.
 
 \subsection{Definitions for $\mathsf{pt}$ Objects}
 \label{subsec:def-pt}
@@ -463,6 +462,9 @@ $\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ &  & This set has no members.
 $\delta_{\mathsf{grp}}$ & $::=$ & $\mathsf{collect}(\rho_1 : \tau_1, \dots, \rho_n : \tau_n)$ & [impl] & This group contains $\rho_1, \dots, \rho_n$.
 \end{tabularx}
 
+Like the $\mathsf{elem}$ definition (see Section \ref{subsec:def-gen}), $\mathsf{collect}$ need not be explicitly available in the programming environment. 
+Groups are constructed by the group typing tool and visually marked as combined objects in the program space and program graph. 
+This definition is used internally by the implementation.
 
 \section{Modifiers}
 \label{sec:mods}
