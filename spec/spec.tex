@@ -423,44 +423,44 @@ $\delta_{\mathsf{circ}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{
 \subsection{Definitions for $\mathsf{ang}$ Objects}
 \label{subsec:def-ang}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \mathsf{ang})$ & This angle's sweep is equal to the sum of the sweeps of $a$ and $b$. \\
- & & $\mathsf{split}(a : \mathsf{ang}; \; \bar{n})$ & This angle's sweep is equal to $\frac{1}{n}$ times the sweep of $a$. If $n = 0$, raise $\mathsf{DefErr}$. \\
- & & $\mathsf{sweep}(\bar{n})$ & The sweep of this angle is equal to $n$ (in degrees). \\
- & & $\mathsf{between}(k : \mathsf{ln}; \; l : \mathsf{ln})$ & This angle's sweep is the sweep between the lines $k$ and $l$. \\
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \mathsf{ang})$ &  & This angle's sweep is equal to the sum of the sweeps of $a$ and $b$. \\
+ & & $\mathsf{split}(a : \mathsf{ang}; \; \bar{n})$ &  & This angle's sweep is equal to $\frac{1}{n}$ times the sweep of $a$. If $n = 0$, raise $\mathsf{DefErr}$. \\
+ & & $\mathsf{sweep}(\bar{n})$ &  & The sweep of this angle is equal to $n$ (in degrees). \\
+ & & $\mathsf{between}(k : \mathsf{ln}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/skew}} & This angle's sweep is the sweep between the lines $k$ and $l$. \\
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{dist}$ Objects}
 \label{subsec:def-dist}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \mathsf{dist})$ & This distance is equal to the sum of the lengths of $d$ and $t$. \\
- & & $\mathsf{div}(d : \mathsf{dist}; \; \bar{n})$ & This distance is equal to $\frac{1}{n}$ times the length of $d$. If $n = 0$, raise $\mathsf{DefErr}$. \\
- & & $\mathsf{length}(\bar{n})$ & This distance is equal to $n$.\\
- & & $\mathsf{span}(p : \mathsf{pt}; \; q : \mathsf{pt})$ & This distance is equal to the distance from $p$ to $q$. \\
- & & $\mathsf{span}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & This distance is equal to the shortest distance from $p$ to $l$. \\
- & & $\mathsf{span}(p : \mathsf{pt}; \; c : \mathsf{circ})$ & This distance is equal to the shortest distance from $p$ to $c$. \\
- & & $\mathsf{span}(k : \mathsf{ln}; \; l : \mathsf{ln})$ & This distance is equal to the shortest distance from $k$ to $l$. \\
- & & $\mathsf{span}(l : \mathsf{ln}; \; c : \mathsf{circ})$ & This distance is equal to the shortest distance from $l$ to $c$. \\
- & & $\mathsf{span}(b : \mathsf{circ}; \; c : \mathsf{circ})$ & This distance is equal to the shortest distance from $b$ to $c$. \\
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \mathsf{dist})$ &  & This distance is equal to the sum of the lengths of $d$ and $t$. \\
+ & & $\mathsf{div}(d : \mathsf{dist}; \; \bar{n})$ &  & This distance is equal to $\frac{1}{n}$ times the length of $d$. If $n = 0$, raise $\mathsf{DefErr}$. \\
+ & & $\mathsf{length}(\bar{n})$ &  & This distance is equal to $n$.\\
+ & & $\mathsf{span}(p : \mathsf{pt}; \; q : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the distance from $p$ to $q$. \\
+ & & $\mathsf{span}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the shortest distance from $p$ to $l$. \\
+ & & $\mathsf{span}(p : \mathsf{pt}; \; c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the shortest distance from $p$ to $c$. \\
+ & & $\mathsf{span}(k : \mathsf{ln}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the shortest distance from $k$ to $l$. \\
+ & & $\mathsf{span}(l : \mathsf{ln}; \; c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the shortest distance from $l$ to $c$. \\
+ & & $\mathsf{span}(b : \mathsf{circ}; \; c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the shortest distance from $b$ to $c$. \\
 
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{set}(\tau)$ Objects}
 \label{subsec:def-set}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ & This set has no members. \\
- & & $\mathsf{size}(\bar{n})$ & The number of members of this set. \\
- & & $\mathsf{include}(\rho : \tau; s : \mathsf{set}(\tau))$ & This set contains all members of the set $s$ and additionally contains $\rho$. \\
- & & $\mathsf{exclude}(\rho : \tau; s : \mathsf{set}(\tau))$ & This set contains all members of the set $s$ except $\rho$. If $\rho$ is not a member of $s$, raise $\mathsf{DefErr}$.
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ &  & This set has no members. \\
+ & & $\mathsf{size}(\bar{n})$ &  & The number of members of this set. \\
+ & & $\mathsf{include}(\rho : \tau; s : \mathsf{set}(\tau))$ &  & This set contains all members of the set $s$ and additionally contains $\rho$. \\
+ & & $\mathsf{exclude}(\rho : \tau; s : \mathsf{set}(\tau))$ &  & This set contains all members of the set $s$ except $\rho$. If $\rho$ is not a member of $s$, raise $\mathsf{DefErr}$.
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{grp}(\tau_1, \dots , \tau_n)$ Objects}
 \label{subsec:def-grp}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\mathsf{grp}}$ & $::=$ & $\mathsf{collect}(\rho_1 : \tau_1, \dots, \rho_n : \tau_n)$ & This group contains $\rho_1, \dots, \rho_n$.
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\delta_{\mathsf{grp}}$ & $::=$ & $\mathsf{collect}(\rho_1 : \tau_1, \dots, \rho_n : \tau_n)$ & [impl] & This group contains $\rho_1, \dots, \rho_n$.
 \end{tabularx}
 
 
