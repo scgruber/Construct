@@ -300,8 +300,13 @@ Any valid topological sorting of $G$ is a valid ordering of runtime execution fo
 \section{Objects}
 \label{sec:obj}
 
-An object in Construct is a named entity $\rho$ which exists in 2d space. 
+An object in Construct is an entity $\rho$ which exists in 2d space. 
 Objects may have position, orientation, magnitude, or any other characteristics which are appropriate based upon their Type (see Section \ref{sec:types}). 
+
+Objects may be named by user-provided strings. 
+These names will appear in the programming environment to disambiguate objects in complex algorithms.
+However, since the visual display of Construct disambiguates objects in a manner not possible in a text language, naming of objects is not necessary in simple programs.
+There are no restrictions on the format of object names (or even their reuse), as the environment does not rely on names to identify objects.
 
 At any point in the execution of a Construct program, any object is a representative of the {\it valid parameter set}. 
 This is a set which contains all parameter combinations which are valid based upon the Definitions (see Section \ref{sec:def}) of the object.
@@ -309,7 +314,9 @@ This is a set which contains all parameter combinations which are valid based up
 \section{Types}
 \label{sec:types}
 
-Construct is strongly typed and does not support parametric typing in any user-created definitions. Typing in Construct may also be considered explicit, by nature of the live data representation of the program state. The types available in Construct are listed below: \\
+Construct is strongly typed and does not support parametric typing in any user-created definitions. 
+Typing in Construct may also be considered explicit, by nature of the live data representation of the program state. 
+The types available in Construct are listed below: \\
 
 \noindent\begin{tabularx}{\textwidth}{l l l c X}
 $\tau$ & $::=$ & $\mathsf{pt}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/pt}} & A point in 2d space. \\
