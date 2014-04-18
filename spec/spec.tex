@@ -389,12 +389,36 @@ This definition exists only in the internals of the language and is never expose
 $\delta_{\mathsf{pt}}$ & $::=$ & $\mathsf{on}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/on}} & This point occurs somewhere along $l$. \\
  & & $\mathsf{on}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/on}} & This point occurs somewhere along $c$. \\
  & & $\mathsf{opp}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/opp}} & This point exists on the opposite side of $l$ from $p$. \\
- & & $\mathsf{center}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/center}} & This point is at the center-point of $c$. \\
  & & $\mathsf{inside}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/inside}} & This point occurs inside of $c$. \\
+ & & $\mathsf{center}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/center}} & This point is at the center-point of $c$. \\
  & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This point is at distance $d$ from $p$. \\
  & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This point is at distance $d$ from the nearest location on $l$. \\
  & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This point is at distance $d$ from the nearest location on the circumference of circle $c$. \\
 \end{tabularx}
+
+Here we see that the built-in definitions may be overloaded to apply to different combinations of arguments. 
+When this is done, the icons for the definitions do not change, in order to minimize the number of icons that are shown in the tool palettes. 
+Definitions which are overloaded always describe logically similar relations between objects.
+
+For example, the $\mathsf{on}$ definition is overloaded because a point can be on a line or on a circle. 
+To require the programmer to think about which object type the point is on is an excessive burden that does not align with how such relationships are ordinarily discussed in geometry. 
+Though the internal calculations will be different, Construct exposes a logically consistent interface to the programmer which allows such details to be handled transparently by the language.
+
+The $\mathsf{on}$ definition is represented by a reticule icon to disambiguate it from several symbols which may appear similar. 
+$\times$ or $+$ are commonly used to indicate point objects in graphics editing programs; however, these symbols can potentially be confused with the symbols for intersection (see $\mathsf{intr}$ in Section \ref{subsec:def-ln}). 
+Therefore, the reticule symbol has been chosen to refer to the alignment of a point to another object. 
+The circle component of the reticule has been reduced in size to likewise avoid confusion with the icon for the $\mathsf{center}$ definition.
+
+To represent $\mathsf{opp}$ and $\mathsf{inside}$, an curved arrow is shown pointing to the zone in which the point is intended to occur. 
+The curvature of the arrow reinforces the sense of the line or circle as a boundary applied to the object (which is then being ``leapt over'').
+Additionally, the icon avoids a straight arrow to avoid the assumption of a distance or direction relation to the referenced objects.
+
+The $\mathsf{center}$ definition does make use of a traditional locus symbol, since there is no possibility of confusion with any of the other symbols presented to the user, due to the surrounding circle.
+
+There were several challenges to the design of the $\mathsf{to}$ definition icon. 
+1) $\mathsf{to}$ will be a highly overloaded definition, having to accommodate all of the possible combinations of input and output objects; 2) the icon should be visually distinct from the icon representing the $\mathsf{dist}$ type; and 3) the icon should not suggest directionality because distances in Construct are scalar.
+Therefore, the $\mathsf{to}$ icon shows a point and a line, with a spanning line segment that represents the distance between. 
+The gaps between the objects and the distance are similar to gaps left in traditional architectural dimensioning notation.
 
 \subsection{Definitions for $\mathsf{ln}$ Objects}
 \label{subsec:def-ln}
