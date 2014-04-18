@@ -1,4 +1,4 @@
-\documentclass[11pt]{report}
+\documentclass[twoside,11pt]{report}
 
 \usepackage{fullpage}
 \usepackage{fancyhdr}
@@ -12,17 +12,69 @@
 \lhead{Construct: Programming with Geometry}
 \rhead{Sam Gruber}
 
+\setlength{\parskip}{0.5em}
+
 \usepackage{tabularx}
+\renewcommand{\arraystretch}{2}
+
 \usepackage{graphicx}
+
 \usepackage{enumerate}
+
+\usepackage{url}
+
+\newcommand{\buttondim}{24pt}
 
 \begin{document}
 
 \maketitle
 
-\pagebreak
-\null\thispagestyle{empty}
-\pagebreak
+\chapter{Introduction}
+\label{chap:intro}
+
+A programming language is a tool to help the programmer express a solution to a problem.
+This tool is most effective when it can clearly translate the intentions of the programmer into the machine's execution process. 
+In most modern programming languages, a program is composed of linear sequences of text symbols.
+In domains such as text processing or algebraic computation, there is a clear correspondence between this representation of tasks and the way that the programmer imagines them.
+
+However, there are many applications where such a format may not correspond well with the programmer's internal model. 
+When the purpose of a program is to manipulate a geometric object, it is a peculiar burden to place upon the programmer to translate the intuitive spatial model of the program into a textual form in order to convey it to a computer. 
+A similar disconnect manifests when parallel or concurrent programs are written in a text format that is still fundamentally singular and sequential.
+
+Programmers should have the ability to create programs using tools that can represent the meaning of the program as clearly as possible, rather than having to jump through layers of translation. 
+Enabling programming in these ways can open the field to the contributions of less-conventional participants, and could make possible new and different understandings of problems and solutions in computer science.
+
+\section{Goals}
+\label{sec:goals}
+
+The target audience for Construct is visual professionals, such as architects and designers, who wish to apply programmatic tools to their existing process.
+This audience does not necessarily have experience with modern programming systems, but nonetheless is looking for a way to automate the generation of geometric forms from other geometric forms.
+This audience is comfortable thinking about objects in geometric terms, but may not be accustomed to working in symbolic terms.
+
+Construct is designed to bring programming to this audience, where traditional programming often does not correspond to the programmer's mental model.
+We target four goals for the design of Construct to help programmers work with the language in a more direct and intuitive way.
+
+\begin{itemize}
+  \item {\bf Make clear the program state.} 
+        The programmer should be able to directly see the state of the program in the programming environment, rather than be required to mentally model the execution of a complex system.
+  \item {\bf Work in the native representation of geometric relationships.} 
+        Data and logic which is fundamentally geometric in nature should be expressed geometrically, rather than symbolically. 
+        The programmer should not be required to internally translate the meaning of the program to explain it to the computer.
+  \item {\bf Specify relationships without inference.} 
+        The programmer should be able to clearly and unambiguously present the program to the computer. 
+        Inferencing prevents the programmer from clearly understanding what will actually happen when the program runs.
+  \item {\bf Run a full (Turing-complete) range of programs.} 
+        The medium of programming should not prevent the programmer from expressing any possible program, though it may be better suited to producing certain types of programs.
+\end{itemize}
+
+\section{Related Work}
+\label{sec:related}
+
+\begin{itemize}
+  \item Visual programming with examples tools \cite{victor2013unthinkable}, \cite{victor2013deadfish}
+  \item A text-based geometry library with coordinate-free operations and a geometric, rather than algebraic, basis \cite{derose1989coordinatefree}
+  \item The Geometric Machine, a model of a computer suited to geometry operations rather than algebraic calculation \cite{reiser2003programming}
+\end{itemize}
 
 \chapter{Geometric Syntax}
 \label{chap:syntax}
@@ -117,7 +169,7 @@ Section \ref{sec:def} lists the definitions which are built into Construct.
 Applying a definition is an infix operation in the programming environment. 
 First, the programmer selects the object which will be defined. 
 Then, the programmer selects a definition from a tool palette in the programming environment. 
-Finally, the programmer selects the objects which are referenced by the defintion.
+Finally, the programmer selects the objects which are referenced by the definition.
 Figure \ref{fig:def-interaction} shows how these interactions may appear in the programming environment, using the $\mathsf{on}$ definition as an example.
 
 We can imagine a similar statement in a textual language:
@@ -126,7 +178,7 @@ We can imagine a similar statement in a textual language:
     Point x = arbitrary_on_line(l);
 \end{verbatim}
 
-However, the effect at runtime of executing this part of the program is not as linear as the textual equivalent suggests.
+The effect at runtime of executing this part of the program may not be as linear as the textual equivalent suggests.
 In most cases, the object which is being defined will be updated to conform to the new definition's requirements, and other data (if not dependent on the object being defined) will not change.
 
 However, in some cases, the new definition constrains the object in a way that is unsatisfiable. 
@@ -139,9 +191,11 @@ More information about errors is presented in Section \ref{sec:failure}.
 \label{subsec:implicit-def}
 
 Some definitions which are represented explicitly in the internal representation are in fact implicitly applied in the programming environment.
-
 One such definition is the $\mathsf{elem}$ definition used to extract objects from groups. 
 In the geometric syntax, there is no need to explicitly break objects out of groups, because they are already visible to the programmer in the data view.
+
+We present such definitions alongside the others for completeness in Chapter \ref{chap:struct}.
+They preserve the uniformity of the internal representation, and are therefore valuable to implementers of the Construct programming environment and interpreter.
 
 \section{Applying Modifications}
 \label{sec:applymod}
@@ -197,7 +251,7 @@ They are similar to anonymous functions in traditional text-based languages.
   \centering
   \fbox{
     \begin{minipage}{3in}\hfill\vspace{2in}\end{minipage}
-  }\;
+  }
   \fbox{
     \begin{minipage}{3in}\hfill\vspace{2in}\end{minipage}
   }
@@ -217,28 +271,30 @@ If the programmer references an object outside the local definition (distinguish
 \section{Definition, Not Manipulation}
 \label{sec:not-manip}
 
-It is important to understand that while the Construct programming environment apppears in many ways similar to a vector graphics editor, it does not operate by direct manipulation of objects.
+It is important to understand that while the Construct programming environment appears in many ways similar to a vector graphics editor, it does not operate by direct manipulation of objects.
 The nature of the objects in the program space is given by definition rules which establish relationships between the objects. 
 Actually dragging or otherwise transforming the particular objects shown in the program space, while potentially supported for clarification purposes, will have no effect on the meaning of a Construct program.
 
 The program space is presented to the programmer to provide an example of the data in the program at runtime, lifting the burden of mental simulation of the effects of the code. 
-Construct is therefore not a programming by example\footnote{cite DCS Pygmalion} system, but rather {\it programming with examples}\footnote{Brad: where does this originate?}.
+Construct is therefore not a programming by example\cite{smith1975pygmalion} system, but rather {\it programming with examples}\cite{myers1986taxonomy}.
 
 
 \chapter{The Structure of Programs}
 \label{chap:struct}
 
 A program in Construct is a Definition (see Section~\ref{sec:def}) which follows a well-defined procedure to generate {\it final} objects from {\it initial} objects. 
-Since a program is a Definition, it can used in other programs to asbtract away higher-level operations used for generating more complex objects.
+Since a program is a Definition, it can used in other programs to abstract away higher-level operations used for generating more complex objects.
 
 A program is a tuple:
 
-$$(O, D)$$
+$$(O, D, M_\rho, M_\delta)$$
 
 $O$ is the set of all objects (see Section \ref{sec:obj}) that are present in the program. 
 $D$ is a function $\rho \to \{\delta_1, \delta_2, \dots\}$ which, given an object $\rho$, produces the set of all definitions (see Section \ref{sec:def}) which describe $\rho$.
+$M_\rho$ is a function $\rho \to \{\mu_1, \mu_2, \dots\}$ which, given an object $\rho$, produces the set of all modifiers (See Section \ref{subsec:mods-obj}) which describe $\rho$.
+$M_\delta$ is a function $\delta \to \{\mu_1, \mu_2, \dots\}$ which, given an object $\rho$, produces the set of all modifiers (See Section \ref{subsec:mods-defs}) which describe $\delta$.
 
-Alternatively, $O$ and $D$ may be combined to generate a directed acyclic graph $G$. 
+$O$ and $D$ may be combined to generate a directed acyclic graph $G$. 
 Any valid topological sorting of $G$ is a valid ordering of runtime execution for the program.
 
 \section{Objects}
@@ -253,27 +309,35 @@ This is a set which contains all parameter combinations which are valid based up
 \section{Types}
 \label{sec:types}
 
-Objects in Construct are classified into one of several types:\\
+Construct is strongly typed and does not support parametric typing in any user-created definitions. Typing in Construct may also be considered explicit, by nature of the live data representation of the program state. The types available in Construct are listed below: \\
 
-\noindent\begin{tabularx}{\textwidth}{l l l X}
-$\tau$ & $::=$ & $\mathsf{pt}$ & A point in 2d space. \\
- & & $\mathsf{ln}$ & An infinite line in 2d space. \\
- & & $\mathsf{circ}$ & A circle in 2d space. \\
- & & $\mathsf{ang}$ & An angle in 2d space. \\
- & & $\mathsf{dist}$ & A distance in 2d space. \\
- & & $\mathsf{set}(\tau)$ & A homogenous collection of objects of type $\tau$. \\
- & & $\mathsf{grp}(\tau_1, \dots, \tau_n)$ & A ordered collection of objects.
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\tau$ & $::=$ & $\mathsf{pt}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/pt}} & A point in 2d space. \\
+ & & $\mathsf{ln}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/ln}} & An infinite line in 2d space. \\
+ & & $\mathsf{circ}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/circ}} & A circle in 2d space. \\
+ & & $\mathsf{ang}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/ang}} & An angle in 2d space. \\
+ & & $\mathsf{dist}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/dist}} & A distance in 2d space. \\
+ & & $\mathsf{set}(\tau)$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/set}} & A homogeneous collection of objects of type $\tau$. \\
+ & & $\mathsf{grp}(\tau_1, \dots, \tau_n)$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/grp}} & A ordered collection of objects.
 \end{tabularx}
 
 Additionally, some built-in Definitions (see Section \ref{sec:def}) accept numerals as parameters. 
 Numerals are shown here with a bar, for example $\bar{n}$ is some integer $n$.
 These numerals allow convenient specification of constant values. 
-Programmer-created definitions can not accept numerals as initials. 
+Programmer-created definitions can not accept numerals as inputs. 
+
+Because Construct is inherently connected to a graphical editing environment, each type listed above is associated with an iconic representation of its data.
+In the programming environment (see Section \ref{sec:environ}), these icons are displayed in tool palettes and denote the commands used to instantiate new objects of the corresponding type.
+
+The icons shown above were chosen to relate to the programmer's existing vocabulary of geometric objects, and to be visually distinctive from each other. 
+For example, we can consider the icons for $\mathsf{set}$ and $\mathsf{grp}$: Because sets are homogeneous and unordered, the icon shows an unorganized cluster of identical triangles. 
+By contrast, since groups are both heterogeneous and ordered, the icon shows a line, triangle, and circle, arranged linearly.
 
 \section{Definitions}
 \label{sec:def}
 
-Definitions are rules that are used to describe an object based upon other objects. All of an object's definitions are evaluated at runtime, during Reconciliation (see Section~\ref{sec:reconc}). 
+Definitions are rules that are used to describe an object based upon other objects. 
+All of an object's definitions are evaluated at runtime, during Reconciliation (see Section~\ref{sec:reconc}). 
 
 Each Definition is a member of a Definition Class $\delta_\tau$, which is the class of all Definitions that describe objects of type $\tau$. 
 Each Definition's inputs and outputs must be a single object, though groups and sets may be passed.
@@ -281,48 +345,49 @@ A Definition may be totally described in this notation (group syntax simplified 
 
 $$\mathsf{defname}[\tau](\rho_1 : \tau_1; \rho_2 : \tau_2; \dots)$$
 
-If the Definition is listed as part of a Definition Class (as below), we omit the bracketed type information for brevity. Additionally, we do not specify the type in our syntax (see Chapter \ref{chap:howto}) because it can be derived from context.
+If the Definition is listed as part of a Definition Class (as below), we omit the bracketed type information for brevity. 
+Additionally, we do not specify the type in our syntax (see Chapter \ref{chap:howto}) because it can be derived from context.
 
 \subsection{Generic Definitions}
 \label{subsec:def-gen}
 
 The following Definitions describe objects of any type $\tau$. \\
 
-\noindent \begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\tau}$ & $::=$ & $\mathsf{null}$ & This definition has no effect on this object. It may be used with the $\mathsf{handle}$ modifier (see Section \ref{subsec:mods-defs}). \\
- & & $\mathsf{id}(\rho : \tau)$ & This object is identical to $\rho$. \\
- & & $\mathsf{of}(s : \mathsf{set}(\mathsf{\tau}))$ & This object is identical to a member of the set $s$. This definition is added implicitly in the programming environment when the user manipulates a set member. \\
- & & $\mathsf{elem}(\bar{m}; \; g : \mathsf{group}(\tau_1, \dots, \tau_n))$ & This object is the $m$th object in the group $g$. If $m > n$ or $\tau_m \neq \tau$, raise $\mathsf{DefErr}$. This definition is added implicitly in the programming environment when the user manipulates an object inside a group.
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\delta_{\tau}$ & $::=$ & $\mathsf{null}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/null}} & This definition has no effect on this object. It may be used with the $\mathsf{handle}$ modifier (see Section \ref{subsec:mods-defs}). \\
+ & & $\mathsf{id}(\rho : \tau)$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/id}} & This object is identical to $\rho$. \\
+ & & $\mathsf{of}(s : \mathsf{set}(\mathsf{\tau}))$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/of}} & This object is identical to a member of the set $s$. This definition is added implicitly in the programming environment when the user manipulates a set member. \\
+ & & $\mathsf{elem}(\bar{m}; \; g : \mathsf{group}(\tau_1, \dots, \tau_n))$ & [impl] & This object is the $m$th object in the group $g$. If $m > n$ or $\tau_m \neq \tau$, raise $\mathsf{DefErr}$. This definition is added implicitly in the programming environment when the user manipulates an object inside a group.
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{pt}$ Objects}
 \label{subsec:def-pt}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\mathsf{pt}}$ & $::=$ & $\mathsf{on}(l : \mathsf{ln})$ & This point occurs somewhere along $l$. \\
- & & $\mathsf{on}(c : \mathsf{circ})$ & This point occurs somewhere along $c$. \\
- & & $\mathsf{opp}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & This point exists on the opposite side of $l$ from $p$. \\
- & & $\mathsf{center}(c : \mathsf{circ})$ & This point is at the centerpoint of $c$. \\
- & & $\mathsf{inside}(c : \mathsf{circ})$ & This point occurs inside of $c$. \\
- & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & This point is at distance $d$ from $p$. \\
- & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & This point is at distance $d$ from the nearest location on $l$. \\
- & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & This point is at distance $d$ from the nearest location on the circumference of circle $c$. \\
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\delta_{\mathsf{pt}}$ & $::=$ & $\mathsf{on}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/on}} & This point occurs somewhere along $l$. \\
+ & & $\mathsf{on}(c : \mathsf{circ})$ &  & This point occurs somewhere along $c$. \\
+ & & $\mathsf{opp}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/opp}} & This point exists on the opposite side of $l$ from $p$. \\
+ & & $\mathsf{center}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/center}} & This point is at the center-point of $c$. \\
+ & & $\mathsf{inside}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/inside}} & This point occurs inside of $c$. \\
+ & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This point is at distance $d$ from $p$. \\
+ & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ &  & This point is at distance $d$ from the nearest location on $l$. \\
+ & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ &  & This point is at distance $d$ from the nearest location on the circumference of circle $c$. \\
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{ln}$ Objects}
 \label{subsec:def-ln}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\delta_{\mathsf{ln}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & This line passes through $p$. \\
- & & $\mathsf{intr}(l : \mathsf{ln})$ & This line intersects $l$ at some location. \\
- & & $\mathsf{par}(l : \mathsf{ln})$ & This line is parallel to $l$. \\
- & & $\mathsf{perp}(l : \mathsf{ln})$ & This line is perpendicular to $l$. \\
- & & $\mathsf{skew}(a : \mathsf{ang}; \; l : \mathsf{ln})$ & This line is at angle $a$ to line $l$. \\
- & & $\mathsf{tan}(c : \mathsf{circ})$ & This line has a point of tangency to $c$ at some location. \\
- & & $\mathsf{cross}(c : \mathsf{circ})$ & This line intersects $c$ at two locations. \\
- & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & This line is at distance $d$ from point $p$ at it closest location. \\
- & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ & This line is at distance $d$ to line $l$ at their closest points. In two dimensions, this implies $\mathsf{par}(l)$. \\
- & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ & This line is at distance $d$ from the nearest location on the circumference of circle $c$. \\
+\noindent\begin{tabularx}{\textwidth}{l l l c X}
+$\delta_{\mathsf{ln}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/thru}} & This line passes through $p$. \\
+ & & $\mathsf{intr}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/intr}} & This line intersects $l$ at some location. \\
+ & & $\mathsf{par}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/par}} & This line is parallel to $l$. \\
+ & & $\mathsf{perp}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/perp}} & This line is perpendicular to $l$. \\
+ & & $\mathsf{skew}(a : \mathsf{ang}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/skew}} & This line is at angle $a$ to line $l$. \\
+ & & $\mathsf{tan}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/tan}} & This line has a point of tangency to $c$ at some location. \\
+ & & $\mathsf{cross}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/cross}} & This line intersects $c$ at two locations. \\
+ & & $\mathsf{to}(p : \mathsf{pt}; \; d : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This line is at distance $d$ from point $p$ at it closest location. \\
+ & & $\mathsf{to}(l : \mathsf{ln}; \; d : \mathsf{dist})$ &  & This line is at distance $d$ to line $l$ at their closest points. In two dimensions, this implies $\mathsf{par}(l)$. \\
+ & & $\mathsf{to}(c : \mathsf{circ}; \; d : \mathsf{dist})$ &  & This line is at distance $d$ from the nearest location on the circumference of circle $c$. \\
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{circ}$ Objects}
@@ -440,21 +505,38 @@ This may initially occur as a result of choices made during the reconciliation o
 The runtime will first try to resolve the failure by redefining these ancestors in a way that will produce a valid result. 
 If this is unsuccessful, the runtime declares $\mathsf{DefErr}$.
 
-A runtime error is then propagated back along the chain of ancestor definitions from the definiton which triggered it. 
+A runtime error is then propagated back along the chain of ancestor definitions from the definition which triggered it. 
 If the runtime encounters a definition which has a $\mathsf{handle}$ modifier attached to it, it will stop this propagation and attempt to redefine the program using the alternate definition.
 This definition itself may fail, which repeats this process on the changed program graph.
 
 If the runtime error propagates all the way to to the initial objects at the top level of the program, the program has failed. 
-The user should be alerted to the failure, and if the program is being evalauated in the programming environment, specific debugging information should be made available.
+The user should be alerted to the failure, and if the program is being evaluated in the programming environment, specific debugging information should be made available.
 
 \chapter{How to Program in Construct}
 \label{chap:howto}
 
+In this chapter, we discuss points relevant to prospective programmers in Construct. Common programming idioms are shown, as well as some examples of functionality that can be built using the tools we have described previously.
+
+\section{Idioms}
+\label{sec:idioms}
+
+This section shows some common programming idioms in Construct in isolation from their broader context.
+
 \section{Example Programs}
 \label{sec:example}
 
+Below we show some example programs that can be written using the features of Construct described earlier in this document. 
+Each example begins with a view of the program in its final form, showing both the program space with the concluding state of the program, and the program graph of the definition dependencies of the whole program.
+
+\pagebreak
+
 \subsection{Triangle Area}
 \label{subsec:triarea}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{examples/triarea}
+\end{figure}
 
 \noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
 \raisebox{-.5\height}{\includegraphics{../triarea/stage1.pdf}} & {\tt initial grp(pt;pt;pt) tri \newline
@@ -482,9 +564,13 @@ The user should be alerted to the failure, and if the program is being evalauate
 \subsection{Adjacent Segments}
 \label{subsec:adjsegs}
 
-This program demonstrates a verification definition. Unlike other definitions which produce a resulting object, this definition just ensures that some relationships are satisfied over its inputs. Verifications may be used as part of extracting objects from sets, or as contracts in programs.
+This program demonstrates a verification definition. 
+Unlike other definitions which produce a resulting object, this definition just ensures that some relationships are satisfied over its inputs. 
+Verifications may be used as part of extracting objects from sets, or as contracts in programs.
 
-Here we use an abbreviated textual syntax for referencing objects in groups. {\tt obj[1][2]} references the second item in a group which is the first item of a group object named {\tt obj}. This notation is similar to array addressing in modern textual programming langauges. \\
+Here we use an abbreviated textual syntax for referencing objects in groups. 
+{\tt obj[1][2]} references the second item in a group which is the first item of a group object named {\tt obj}. 
+This notation is similar to array addressing in modern textual programming languages. \\
 
 \noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
 \hspace{3.5cm}\vspace{1cm} & {\tt initial grp(grp(ln;circ);\newline grp(ln;circ)) segs } & {\small Start with two segments (represented by a line and a bounding circle). } \\
@@ -508,9 +594,11 @@ TODO
 \subsection{Polygon Area}
 \label{subsec:polyarea}
 
-The next example program incorporates the previous examples and calls them as user-created definitions. We use the keyword {\tt void} to where a verification definition produces no resulting object; in the geometric interface, this is invisible to the programmer.
+The next example program incorporates the previous examples and calls them as user-created definitions. 
+We use the keyword {\tt void} to where a verification definition produces no resulting object; in the geometric interface, this is invisible to the programmer.
 
-User-created definitions are enclosed in curly braces to distinguish them from the built-in definitions. Local definitions are also enclosed in curly braces, but not named. \\
+User-created definitions are enclosed in curly braces to distinguish them from the built-in definitions. 
+Local definitions are also enclosed in curly braces, but not named. \\
 
 \noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
 \hspace{3.5cm} & {\tt final set(grp(ln;circ)) tri.local\{ \newline
@@ -540,13 +628,52 @@ User-created definitions are enclosed in curly braces to distinguish them from t
         final dist area.\{Triangle Area\}(verts)} & {\small Use the triangle area definition. } \\
 \end{tabularx}\\\\
 
-% \section{Interfaces}
-% \label{sec:data}
+\chapter{Conclusions}
+\label{chap:conclusions}
 
-% \subsection{Geometry Markup}
-% \label{sec:gml}
+\section{Future Work}
 
-% A file format is proposed to allow description of well-defined objects in 2d space. 
-% The Construct runtime makes use of these files for input and output.
+At this time, Construct exists only as this general specification of a programming system. 
+Future work on this system may take many directions, some of which are described below.
+
+\subsection{Runtime Implementation}
+
+This document only describes the behavior of Construct programs. 
+It will be necessary to produce a working interpreter or compiler than can enable these programs to be actually written and tested. 
+This runtime system will require a constraint solver that can efficiently step the program forward so that Construct is a viable alternative to traditional programming languages.
+
+\subsection{Interface Implementation}
+
+In order to assess the usability of the interface to Construct, future work should explore a prototype of the programming environment described in Chapter \ref{chap:syntax}.
+This prototype can then be tested with the target audience of visual professionals to gauge its effectiveness and gain user feedback on the design decisions made in the system.
+
+\subsection{Cut and Paste}
+
+An interface challenge to be explored in future work is the functionality of cut and paste. 
+In textual programming languages, cut and paste can be performed independently of the surrounding text because there are no explicit linkages.
+Because Construct programs are presented to the programmer as directed graphs, performing cut and paste requires some trade-off between preserving edges (representing definitions), and maintaining predictability of the command to the programmer.
+
+\subsection{Higher Dimensions}
+
+Presently, Construct has been designed to facilitate geometric procedures solely in a two-dimensional plane. 
+This is a significant limitation on the problems which are easily represented by the system. 
+While approaches from projective geometry may be used to simulate working in higher dimensions, such approaches require the programmer to mentally simulate the true operation of the program, which falls short of Goal 1 (see Section \ref{sec:goals}).
+Extension of the design of Construct to three dimensions in future work could alleviate this problem.
+
+\subsection{Datatypes}
+
+Programmers will likely desire to shorthand complex datatypes composed of sets and groups into single entities. 
+Several of the examples presented in Section \ref{sec:example} make use of a group of a line and a circle to represent a line segment. 
+In those examples, we must verify that the group is a valid segment, rather than having the type system establish this for us.
+Future work may explore adding the facility to Construct for arbitrary higher-complexity datatypes to be reduced to simpler programmer-created type definitions.
+
+\section{Discussion}
+
+\appendix
+
+\nocite{*}
+
+\bibliographystyle{acm}
+\bibliography{construct}
 
 \end{document}
