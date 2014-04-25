@@ -328,6 +328,8 @@ $\tau$ & $::=$ & $\mathsf{pt}$ & \raisebox{-.5\height}{\includegraphics[width=\b
  & & $\mathsf{grp}(\tau_1, \dots, \tau_n)$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/grp}} & A ordered collection of objects.
 \end{tabularx}
 
+We can further distinguish the types of objects into three kinds. $\mathsf{pt}$, $\mathsf{ln}$ and $\mathsf{circ}$ are {\it literals}, because they correspond to real objects. $\mathsf{ang}$ and $\mathsf{dist}$ are {\it measures}. They correspond to familiar geometric concepts, but don't have actual position in the real world, and so behave somewhat differently in the program space. Finally, $\mathsf{set}$ and $\mathsf{grp}$ are {\it aggregates}, which hold multiple other objects, allowing for complex data structures.
+
 Additionally, some built-in Definitions (see Section \ref{sec:def}) accept numerals as parameters. 
 Numerals are shown here with a bar, for example $\bar{n}$ is some integer $n$.
 These numerals allow convenient specification of constant values. 
@@ -454,10 +456,10 @@ $\delta_{\mathsf{circ}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{
 \label{subsec:def-ang}
 
 \noindent\begin{tabularx}{\textwidth}{l l l c X}
-$\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \mathsf{ang})$ &  & This angle's sweep is equal to the sum of the sweeps of $a$ and $b$. \\
+$\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \mathsf{ang})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/join}} & This angle's sweep is equal to the sum of the sweeps of $a$ and $b$. \\
  & & $\mathsf{split}(a : \mathsf{ang}; \; \bar{n})$ &  & This angle's sweep is equal to $\frac{1}{n}$ times the sweep of $a$. If $n = 0$, raise $\mathsf{DefErr}$. \\
- & & $\mathsf{sweep}(\bar{n})$ &  & The sweep of this angle is equal to $n$ (in degrees). \\
- & & $\mathsf{between}(k : \mathsf{ln}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/skew}} & This angle's sweep is the sweep between the lines $k$ and $l$. \\
+ & & $\mathsf{sweep}(\bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/sweep}} & The sweep of this angle is equal to $n$ (in degrees). \\
+ & & $\mathsf{between}(k : \mathsf{ln}; \; l : \mathsf{ln}; \; p : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/skew}} & This angle's sweep is the sweep between the lines $k$ and $l$ which contains $p$. \\
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{dist}$ Objects}
@@ -466,7 +468,7 @@ $\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \maths
 \noindent\begin{tabularx}{\textwidth}{l l l c X}
 $\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \mathsf{dist})$ &  & This distance is equal to the sum of the lengths of $d$ and $t$. \\
  & & $\mathsf{div}(d : \mathsf{dist}; \; \bar{n})$ &  & This distance is equal to $\frac{1}{n}$ times the length of $d$. If $n = 0$, raise $\mathsf{DefErr}$. \\
- & & $\mathsf{length}(\bar{n})$ &  & This distance is equal to $n$.\\
+ & & $\mathsf{length}(\bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/length}} & This distance is equal to $n$.\\
  & & $\mathsf{span}(p : \mathsf{pt}; \; q : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the distance from $p$ to $q$. \\
  & & $\mathsf{span}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the shortest distance from $p$ to $l$. \\
  & & $\mathsf{span}(p : \mathsf{pt}; \; c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the shortest distance from $p$ to $c$. \\
@@ -724,7 +726,7 @@ Extension of the design of Construct to three dimensions in future work could al
 
 Programmers will likely desire to shorthand complex datatypes composed of sets and groups into single entities. 
 Several of the examples presented in Section \ref{sec:example} make use of a group of a line and a circle to represent a line segment. 
-In those examples, we must verify that the group is a valid segment, rather than having the type system establish this for us.
+In those examples, we must verify that the group is a valid segment, rather than having the language establish this for us.
 Future work may explore adding the facility to Construct for arbitrary higher-complexity datatypes to be reduced to simpler programmer-created type definitions.
 
 \section{Discussion}
