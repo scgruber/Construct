@@ -54,16 +54,21 @@ This audience is comfortable thinking about objects in geometric terms, but may 
 Construct is designed to bring programming to this audience, where traditional programming often does not correspond to the programmer's mental model.
 We target four goals for the design of Construct to help programmers work with the language in a more direct and intuitive way.
 
+\newcommand{\constructgoalsclear}{Make clear the program state}
+\newcommand{\constructgoalsnative}{Work in the native representation of geometric relationships}
+\newcommand{\constructgoalsnoinfer}{Specify relationships without inference}
+\newcommand{\constructgoalscomplete}{Run a full (Turing-complete) range of programs}
+
 \begin{itemize}
-  \item {\bf Make clear the program state.} 
+  \item {\bf \constructgoalsclear.} 
         The programmer should be able to directly see the state of the program in the programming environment, rather than be required to mentally model the execution of a complex system.
-  \item {\bf Work in the native representation of geometric relationships.} 
+  \item {\bf \constructgoalsnative.} 
         Data and logic which is fundamentally geometric in nature should be expressed geometrically, rather than symbolically. 
         The programmer should not be required to internally translate the meaning of the program to explain it to the computer.
-  \item {\bf Specify relationships without inference.} 
+  \item {\bf \constructgoalsnoinfer.} 
         The programmer should be able to clearly and unambiguously present the program to the computer. 
         Inferencing prevents the programmer from clearly understanding what will actually happen when the program runs.
-  \item {\bf Run a full (Turing-complete) range of programs.} 
+  \item {\bf \constructgoalscomplete.} 
         The medium of programming should not prevent the programmer from expressing any possible program, though it may be better suited to producing certain types of programs.
 \end{itemize}
 
@@ -730,6 +735,27 @@ In those examples, we must verify that the group is a valid segment, rather than
 Future work may explore adding the facility to Construct for arbitrary higher-complexity datatypes to be reduced to simpler programmer-created type definitions.
 
 \section{Discussion}
+\label{sec:discuss}
+
+In Section \ref{sec:goals} we laid out four goals to help programmers to use Construct. Each of these principles have shaped the design of this programming system.
+
+\subsection{\constructgoalsclear}
+
+Construct programs are shown to the programmer in an environment (Section \ref{sec:environ}) which displays both a graph of the evaluation of the program and a representative state of its objects.
+In this way, the programmer is relieved of the burden of simulating the operation of the program.
+
+\subsection{\constructgoalsnative}
+
+Chapter \ref{chap:struct} describes the many features in Construct which mimic their traditional pen-and-paper geometry counterparts.
+All objects in Construct have familiar analogs in geometry and behave in ways that are consistent with traditional geometry.
+Likewise, the definitions correspond to common geometric operations, and can be clearly explained using terminology familiar to any user who has worked with geometry.
+
+\subsection{\constructgoalsnoinfer}
+
+Unlike programming by example systems, Construct is designed to be programmed entirely by specifying unambiguous rules.
+This prevents the uncertainty of relying on the environment's inference engine, and allows the programmer to be confident in the formulation of the program.
+
+\subsection{\constructgoalscomplete}
 
 \appendix
 
