@@ -600,28 +600,7 @@ Each example begins with a view of the program in its final form, showing both t
   \label{fig:triarea}
 \end{figure}
 
-\noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
-\raisebox{-.5\height}{\includegraphics{../triarea/stage1.pdf}} & {\tt initial grp(pt;pt;pt) tri \newline
-        pt p1.elem(1,tri) \newline
-        pt p2.elem(2,tri) \newline
-        pt p3.elem(3,tri) } & {\small Start with three points that describe the triangle.} \\
-\hline
-\raisebox{-.5\height}{\includegraphics{../triarea/stage2.pdf}} & {\tt ln l1.thru(p1).thru(p2)} & {\small Add a line along one of the triangle's sides.} \\
-\hline
-\raisebox{-.5\height}{\includegraphics{../triarea/stage3.pdf}} & {\tt dist two.length(2) \newline
-        ln l2.thru(p1).thru(p3) \newline
-        pt p4.on(l1).to(p1;two).opp(p2;l2)} & {\small Create a new point 2 units outside the triangle along the line.} \\
-\hline
-\raisebox{-.5\height}{\includegraphics{../triarea/stage4.pdf}} & {\tt ln l3.thru(p3).thru(p4) \newline
-        ln l4.thru(p2).par(l3) \newline
-        pt p5.on(l1).on(l4)} & {\small The triangle (p1,p4,p5) has the same area as the original triangle.} \\
-\hline
-\raisebox{-.5\height}{\includegraphics{../triarea/stage5.pdf}} & {\tt ln l5.thru(p5).par(l1) \newline
-        ln l6.thru(p4).perp(l1) \newline
-        pt p6.on(l5).on(l6)} & {\small The triangle (p1,p4,p6) has the same area as the original triangle.} \\
-\hline
-\raisebox{-.5\height}{\includegraphics{../triarea/stage6.pdf}} & {\tt final dist area.span(p4;p6)} & {\small This distance is the area because the base of the triangle is 2, so the height equals the area.}
-\end{tabularx}
+Figure \ref{fig:triarea} shows a program which calculates the area of the triangle in both the program space and program graph views.
 
 \subsection{Adjacent Segments}
 \label{subsec:adjsegs}
