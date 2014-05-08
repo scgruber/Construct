@@ -601,6 +601,17 @@ This section shows some common programming idioms in Construct in isolation from
   \label{fig:ifthenelse}
 \end{figure}
 
+The idiom for {\it if-then-else}, shown in Figure \ref{fig:ifthenelse}, is distinguishable primarily in the graph view of a Construct program.
+We use a $\mathsf{set}$ object to represent the condition of the {\it if}: a $\mathsf{set}$ containing some elements represents {\it true}, whereas an empty $\mathsf{set}$ represents {\it false}.
+
+With this definition of {\it true} and {\it false}, we use two $\mathsf{local}$ definitions to encapsulate the definitions occurring in the {\it then} and {\it else} branches of computation. 
+In the {\it then} branch, we try to take an element out of the $\mathsf{set}$. 
+If the runtime is able to do this, then the condition must have been true, and the rest of the {\it then} branch definitions can be computed, arriving at some result $r$.
+
+If the $\mathsf{set}$ is empty, then extracting an element will raise $\mathsf{DefErr}$. 
+This is picked up by the $\mathsf{handle}$, shown in red, which causes the {\it else} branch computation to occur, again arriving at some result $r$.
+Then the two branches are unified onto the ultimate result object.
+
 \section{Example Programs}
 \label{sec:example}
 
