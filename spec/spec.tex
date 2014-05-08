@@ -365,7 +365,7 @@ They also appear in the program graph as annotations to the edges in the graph, 
 
 The following Definitions describe objects of any type $\tau$. \\
 
-\noindent\begin{tabularx}{\textwidth}{l l l c X}
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\tau}$ & $::=$ & $\mathsf{null}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/null}} & This definition has no effect on this object. It may be used with the $\mathsf{handle}$ modifier (see Section \ref{subsec:mods-defs}). \\
  & & $\mathsf{id}(\rho : \tau)$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/id}} & This object is identical to $\rho$. \\
  & & $\mathsf{of}(s : \mathsf{set}(\mathsf{\tau}))$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/of}} & This object is identical to a member of the set $s$. This definition is added implicitly in the programming environment when the user manipulates a set member. \\
@@ -387,7 +387,7 @@ This definition exists only in the internals of the language and is never expose
 \subsection{Definitions for $\mathsf{pt}$ Objects}
 \label{subsec:def-pt}
 
-\noindent\begin{tabularx}{\textwidth}{l l l c X}
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\mathsf{pt}}$ & $::=$ & $\mathsf{on}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/on}} & This point occurs somewhere along $l$. \\
  & & $\mathsf{on}(c : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/on}} & This point occurs somewhere along $c$. \\
  & & $\mathsf{opp}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/opp}} & This point exists on the opposite side of $l$ from $p$. \\
@@ -425,7 +425,7 @@ The gaps between the objects and the distance are similar to gaps left in tradit
 \subsection{Definitions for $\mathsf{ln}$ Objects}
 \label{subsec:def-ln}
 
-\noindent\begin{tabularx}{\textwidth}{l l l c X}
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\mathsf{ln}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/thru}} & This line passes through $p$. \\
  & & $\mathsf{intr}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/intr}} & This line intersects $l$ at some location. \\
  & & $\mathsf{par}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/par}} & This line is parallel to $l$. \\
@@ -441,7 +441,7 @@ $\delta_{\mathsf{ln}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{-.
 \subsection{Definitions for $\mathsf{circ}$ Objects}
 \label{subsec:def-circ}
 
-\noindent\begin{tabularx}{\textwidth}{l l l c X}
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\mathsf{circ}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/thru}} & This circle passes through $p$. \\
  & & $\mathsf{about}(p : \mathsf{circ})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/center}} & This circle is centered on $p$. \\
  & & $\mathsf{tan}(l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/tan}} & This circle has a point of tangency to $l$ at some location. \\
@@ -455,7 +455,7 @@ $\delta_{\mathsf{circ}}$ & $::=$ & $\mathsf{thru}(p : \mathsf{pt})$ & \raisebox{
 \subsection{Definitions for $\mathsf{ang}$ Objects}
 \label{subsec:def-ang}
 
-\noindent\begin{tabularx}{\textwidth}{l l l c X}
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \mathsf{ang})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/join}} & This angle's sweep is equal to the sum of the sweeps of $a$ and $b$. \\
  & & $\mathsf{split}(a : \mathsf{ang}; \; \bar{n})$ &  & This angle's sweep is equal to $\frac{1}{n}$ times the sweep of $a$. If $n = 0$, raise $\mathsf{DefErr}$. \\
  & & $\mathsf{sweep}(\bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/sweep}} & The sweep of this angle is equal to $n$ (in degrees). \\
@@ -465,7 +465,7 @@ $\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \maths
 \subsection{Definitions for $\mathsf{dist}$ Objects}
 \label{subsec:def-dist}
 
-\noindent\begin{tabularx}{\textwidth}{l l l c X}
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \mathsf{dist})$ &  & This distance is equal to the sum of the lengths of $d$ and $t$. \\
  & & $\mathsf{div}(d : \mathsf{dist}; \; \bar{n})$ &  & This distance is equal to $\frac{1}{n}$ times the length of $d$. If $n = 0$, raise $\mathsf{DefErr}$. \\
  & & $\mathsf{length}(\bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/length}} & This distance is equal to $n$.\\
@@ -481,7 +481,7 @@ $\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \math
 \subsection{Definitions for $\mathsf{set}(\tau)$ Objects}
 \label{subsec:def-set}
 
-\noindent\begin{tabularx}{\textwidth}{l l l c X}
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ &  & This set has no members. \\
  & & $\mathsf{size}(\bar{n})$ &  & The number of members of this set. \\
  & & $\mathsf{include}(\rho : \tau; s : \mathsf{set}(\tau))$ &  & This set contains all members of the set $s$ and additionally contains $\rho$. \\
@@ -491,7 +491,7 @@ $\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ &  & This set has no members.
 \subsection{Definitions for $\mathsf{grp}(\tau_1, \dots , \tau_n)$ Objects}
 \label{subsec:def-grp}
 
-\noindent\begin{tabularx}{\textwidth}{l l l c X}
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\mathsf{grp}}$ & $::=$ & $\mathsf{collect}(\rho_1 : \tau_1, \dots, \rho_n : \tau_n)$ & [impl] & This group contains $\rho_1, \dots, \rho_n$.
 \end{tabularx}
 
@@ -507,26 +507,26 @@ Modifiers are higher-level constructs than Definitions which further specify pro
 \subsection{Modifiers for Objects}
 \label{subsec:mods-obj}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\mu_{\rho}$ & $::=$ & $\mathsf{initial}$ & $\rho$ is given as an input to the program. \\
- & & $\mathsf{final}$ & $\rho$ is the result of the program. \\
- & & $\mathsf{unique}$ & The Definitions which specify $\rho$ must resolve to exactly one possible set of parameters. If $\rho$ is not uniquely defined, raise $\mathsf{DefErr}$.
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
+$\mu_{\rho}$ & $::=$ & $\mathsf{initial}$ &  & $\rho$ is given as an input to the program. \\
+ & & $\mathsf{final}$ &  & $\rho$ is the result of the program. \\
+ & & $\mathsf{unique}$ &  & The Definitions which specify $\rho$ must resolve to exactly one possible set of parameters. If $\rho$ is not uniquely defined, raise $\mathsf{DefErr}$.
 \end{tabularx}
 
 \subsection{Modifiers for Definitions}
 \label{subsec:mods-defs}
 
-\begin{tabularx}{\textwidth}{l l l X}
-$\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ & The negation of this Definition. \\
- & & $\mathsf{handle}(\delta_\tau')$ & If this Definition raises a runtime error, instead apply $\delta_\tau'$. \\
- & & $\mathsf{each}$ & Applies this Definition over all members of a set, specifying a new Definition in the class $\delta_{\mathsf{set}(\tau)}$. If $\mathsf{DefErr}$ is raised at any point, this whole definition raises $\mathsf{DefErr}$. \\
- & & $\mathsf{filter}$ & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
+$\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ &  & The negation of this Definition. \\
+ & & $\mathsf{handle}(\delta_\tau')$ &  & If this Definition raises a runtime error, instead apply $\delta_\tau'$. \\
+ & & $\mathsf{each}$ &  & Applies this Definition over all members of a set, specifying a new Definition in the class $\delta_{\mathsf{set}(\tau)}$. If $\mathsf{DefErr}$ is raised at any point, this whole definition raises $\mathsf{DefErr}$. \\
+ & & $\mathsf{filter}$ &  & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
 \end{tabularx}
 
 \section{Local}
 \label{sec:local}
-\begin{tabularx}{\textwidth}{l l l X}
-$\lambda$ & $::=$ & $\mathsf{local}(G)$ & Produces a local definition from the program subgraph $G$. This can be used in conjunction with the $\mathsf{handle}$, $\mathsf{each}$ and $\mathsf{filter}$ modifiers to apply more complex behaviors.\\
+\noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
+$\lambda$ & $::=$ & $\mathsf{local}(G)$ &  & Produces a local definition from the program subgraph $G$. This can be used in conjunction with the $\mathsf{handle}$, $\mathsf{each}$ and $\mathsf{filter}$ modifiers to apply more complex behaviors.\\
 \end{tabularx}
 
 
