@@ -602,72 +602,9 @@ Each example begins with a view of the program in its final form, showing both t
 
 Figure \ref{fig:triarea} shows a program which calculates the area of the triangle in both the program space and program graph views.
 
-\subsection{Adjacent Segments}
-\label{subsec:adjsegs}
-
-This program demonstrates a verification definition. 
-Unlike other definitions which produce a resulting object, this definition just ensures that some relationships are satisfied over its inputs. 
-Verifications may be used as part of extracting objects from sets, or as contracts in programs.
-
-Here we use an abbreviated textual syntax for referencing objects in groups. 
-{\tt obj[1][2]} references the second item in a group which is the first item of a group object named {\tt obj}. 
-This notation is similar to array addressing in modern textual programming languages. \\
-
-\noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
-\hspace{3.5cm}\vspace{1cm} & {\tt initial grp(grp(ln;circ);\newline grp(ln;circ)) segs } & {\small Start with two segments (represented by a line and a bounding circle). } \\
-\hline
-\vspace{0.5cm} & 
-{\tt
-pt adj.on(segs[1][1]) \newline
-      .on(segs[1][2]) \newline
-      .on(segs[2][1]) \newline
-      .on(segs[2][2])
-} & {\small Verify that the lines and circles all intersect at a common point.} \\
-\end{tabularx}\\\\
-
-If this simple definition fails, then we know that our line segments are not adjacent.
-
-\subsection{Reduce Polygon to Triangle}
-\label{subsec:reducepoly}
-
-TODO
-
-\subsection{Polygon Area}
-\label{subsec:polyarea}
-
-The next example program incorporates the previous examples and calls them as user-created definitions. 
-We use the keyword {\tt void} to where a verification definition produces no resulting object; in the geometric interface, this is invisible to the programmer.
-
-User-created definitions are enclosed in curly braces to distinguish them from the built-in definitions. 
-Local definitions are also enclosed in curly braces, but not named. \\
-
-\noindent \begin{tabularx}{\textwidth}{l X p{4cm}}
-\hspace{3.5cm} & {\tt final set(grp(ln;circ)) tri.local\{ \newline
-  initial set(grp(ln;circ)) poly.size(3) \newline
-  void.\{Closed Polygon\}(poly) \newline
-  final poly \newline
-\}} & {\small If the polygon has three sides, then it's already a triangle. } \\
-\hline
- & {\tt handle( local\{ \newline
-  initial set(grp(ln;circ)) poly \newline
-  void.\{Closed Polygon\}(poly) \newline
-  final poly3.\{Reduce Polygon to \newline Triangle\}(poly) \newline
-\})} & {\small If the polygon has more than three sides, we reduce it to three. } \\
-\hline
- & {\tt grp(ln;circ) A.of(tri) \newline
-        grp(ln;circ) B.of(tri) \newline
-        .not id(A) \newline
-        grp(ln;circ) C.of(tri) \newline
-        .not id(A) \newline
-        .not id(B) } & {\small Get the three sides. } \\
-\hline
-\vspace{1.5cm} & {\tt pt p1.on(A[1]).on(B[1]) \newline
-        pt p2.on(A[1]).on(C[1]) \newline
-        pt p3.on(B[1]).on(C[1])} & {\small Get the three vertices. } \\
-\hline
-\vspace{1.5cm} & {\tt grp(pt;pt;pt) verts.collect(p1;p2;p3) \newline
-        final dist area.\{Triangle Area\}(verts)} & {\small Use the triangle area definition. } \\
-\end{tabularx}\\\\
+In brief, the program works by constructing a triangle $(p_1,p_4,p_5)$ which has the same area as the original triangle, where side $\overline{p_1p_4}$ has length 2.
+Then a triangle $(p_1,p_4,p_6)$ is constructed which is a right triangle. 
+Since one leg of the right triangle is length 2, applying the standard formula for the area of a triangle reveals that the length of the other leg is equal to the area.
 
 \chapter{Conclusions}
 \label{chap:conclusions}
