@@ -693,8 +693,12 @@ In traditional geometry, the logic of this operation is not often drawn, and so 
 
 \subsection{\constructgoalsnoinfer}
 
-Unlike programming by demonstration systems, Construct is designed to be programmed entirely by specifying unambiguous rules.
-It is thus clear that Construct achieves this goal completely.
+Construct is designed to be programmed entirely by specifying unambiguous rules.
+This methodology in designing the language means that we never rely on machine inference, so the evaluation of the programs is always specified directly by the user.
+
+However, Construct also permits specifications of geometric systems which are ambiguous. 
+Definitions may be used in such a way that objects are not uniquely defined, which could make it difficult for programmers to reason about some programs. 
+Future user testing will allow us to understand where this may cause problems for users, and modify the language and/or programming environment to mitigate this confusion.
 
 \subsection{\constructgoalscomplete}
 
