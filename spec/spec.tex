@@ -668,7 +668,10 @@ In Section \ref{sec:goals} we laid out four goals to help programmers to use Con
 \subsection{\constructgoalsclear}
 
 Construct programs are shown to the programmer in an environment (Section \ref{sec:environ}) which displays both a graph of the evaluation of the program and a representative state of its objects.
-In this way, the programmer is relieved of the burden of simulating the operation of the program.
+Though the runtime state is shown during composition, some elements of Construct programs are still difficult to represent in a geometric view. 
+$\mathsf{set}$ objects and the effects of branching from $\mathsf{handle}$ modifiers do not have clear geometric analogues, and so may not be clear to the users of Construct.
+
+In ongoing work on the Construct user interface and runtime, we hope to evolve the presentation of these elements so that users are able to clearly understand these elements.
 
 \subsection{\constructgoalsnative}
 
