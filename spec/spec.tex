@@ -256,13 +256,8 @@ They are similar to anonymous functions in traditional text-based languages.
 
 \begin{figure}[h]
   \centering
-  \fbox{
-    \begin{minipage}{3in}\hfill\vspace{2in}\end{minipage}
-  }
-  \fbox{
-    \begin{minipage}{3in}\hfill\vspace{2in}\end{minipage}
-  }
-  \caption{The appearance of a local definition in the program graph (left) and space (right)}
+  \includegraphics[width=0.9\textwidth]{examples/localdef.pdf}
+  \caption{The appearance of a local definition in the program space (left) and graph (right)}
   \label{fig:local}
 \end{figure}
 
@@ -273,7 +268,7 @@ Unlike a predefined definition, the local definition has no references already d
 The program space and graph will then appear similar to what is shown in Figure \ref{fig:local}. 
 The object which is to be defined will appear locally, marked as $\mathsf{final}$. 
 The programmer may then build up the objects and definitions used to define the final object.
-If the programmer references an object outside the local definition (distinguishable by the gray overlay that fades those objects), that object will automatically become a reference for the local definition and appear as an $\mathsf{initial}$ inside the local definition.
+If the programmer references an object outside the local definition (distinguishable by fading of those objects), that object will automatically become a reference for the local definition and appear as an $\mathsf{initial}$ inside the local definition.
 
 \section{Definition, Not Manipulation}
 \label{sec:not-manip}
