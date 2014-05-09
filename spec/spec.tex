@@ -77,17 +77,17 @@ We target four goals for the design of Construct to help programmers work with t
 \section{Related Work}
 \label{sec:related}
 
-The use of computer systems to manipulate geometry has been an active area of research since Ivan Sutherland's work on the Sketchpad system \cite{sutherland1963sketchpad}. 
-Greg Nelson's later work on Juno \cite{nelson1985juno} and commercial development of computer-aided drafting and design software has focused on the application of constraints to direct manipulation drawing interfaces.
+The use of computer systems to manipulate geometry has been an active area of research since Ivan Sutherland's work on the Sketchpad system~\cite{sutherland1963sketchpad}. 
+Greg Nelson's later work on Juno~\cite{nelson1985juno} and commercial development of computer-aided drafting and design software has focused on the application of constraints to direct manipulation drawing interfaces.
 These systems have been valuable tools to aid manual acceleration of geometric work, but fundamentally are only an enhanced version of pen-and-paper geometric techniques.
 
-Bret Victor has recently spoken \cite{victor2013future} on the value of wide-ranging approaches to computer science and programming.
-Recent work by Victor \cite{victor2013unthinkable,victor2013deadfish} has focused on the potential of visual tools which enable the development of systems with behavior.
+Bret Victor has recently spoken~\cite{victor2013future} on the value of wide-ranging approaches to computer science and programming.
+Recent work by Victor~\cite{victor2013unthinkable,victor2013deadfish} has focused on the potential of visual tools which enable the development of systems with behavior.
 Victor's work engages with a data-centric view of programs, which is effective for representing compositions, but does not show the evaluation structure of the programs that are being composed.
 
 At the same time, there have been explorations into computer architectures suitable for work in geometric terms.
-Tony DeRose's analysis of coordinate-free geometric calculations \cite{derose1989coordinatefree}, though envisioned in the context of traditional text-based programming languages, provides a model of geometric computation that more closely mirrors pen-and-paper geometry.
-The Geometric Machine \cite{reiser2003programming} developed a computer system in which the memory is envisioned as a geometric space rather than the familiar Turing-machine one-dimensional stream of symbols.
+Tony DeRose's analysis of coordinate-free geometric calculations~\cite{derose1989coordinatefree}, though envisioned in the context of traditional text-based programming languages, provides a model of geometric computation that more closely corresponds to pen-and-paper geometry.
+Research into the Geometric Machine~\cite{reiser2003programming} developed a computer system in which the memory is envisioned as a geometric space rather than the familiar Turing-machine one-dimensional stream of symbols.
 
 Construct aims to synthesize constraint-based geometry, visual tools for programming, and geometric bases for computation into a platform that engages visual and spatial thinkers and enables novel approaches to problems in computer science.
 
@@ -283,7 +283,7 @@ The nature of the objects in the program space is given by definition rules whic
 Actually dragging or otherwise transforming the particular objects shown in the program space, while potentially supported for clarification purposes, will have no effect on the meaning of a Construct program.
 
 The program space is presented to the programmer to provide an example of the data in the program at runtime, lifting the burden of mental simulation of the effects of the code. 
-Construct is therefore not a programming by example\cite{smith1975pygmalion} system, but rather {\it programming with examples}\cite{myers1986taxonomy}.
+Construct is therefore not a programming by example~\cite{smith1975pygmalion} system, but rather {\it programming with examples}~\cite{myers1986taxonomy}.
 
 
 \chapter{The Structure of Programs}
@@ -659,7 +659,7 @@ Future work on this system may take many directions, some of which are described
 This document only describes the behavior of Construct programs. 
 It will be necessary to produce a working interpreter or compiler than can enable these programs to be actually written and tested. 
 This runtime system will require a constraint solver that can efficiently step the program forward so that Construct is a viable alternative to traditional programming languages. 
-Recent research into evaluation of constrained geometric systems \cite{alberti2001objsa,freixas2010constraint,pion2006lazy} may provide insight into the development of a performant interpreter.
+Recent research into evaluation of constrained geometric systems~\cite{alberti2001objsa,freixas2010constraint,pion2006lazy} may provide insight into the development of a performant interpreter.
 
 \subsection{User Interface}
 
@@ -672,7 +672,7 @@ An interface challenge to be explored in future work is the functionality of cut
 In textual programming languages, cut and paste can be performed independently of the surrounding text because there are no explicit linkages.
 Because Construct programs are presented to the programmer as directed graphs, performing cut and paste requires some trade-off between preserving edges (representing definitions), and maintaining predictability of the command to the programmer.
 
-There has been some work on interfaces for cut and paste in graphs \cite{ibrahim1998graphpaste}.
+There has been some work on interfaces for cut and paste in graphs~\cite{ibrahim1998graphpaste}.
 Expansion of this work and adaptations to the particular format of Construct's program graph will be a valuable addition to the usefulness of the programming environment.
 A corresponding cut and paste without the program space will also need to be developed, which is aware of the dependencies established in the program.
 
