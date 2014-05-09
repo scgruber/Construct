@@ -675,11 +675,15 @@ If the $\mathsf{set}$ is empty, then extracting an element will raise $\mathsf{D
 This is picked up by the $\mathsf{handle}$, shown in red, which causes the {\it else} branch computation to occur, again arriving at some result $r$.
 Then the two branches are unified onto the ultimate result object.
 
-\section{Example Programs}
+\section{Example Program}
 \label{sec:example}
 
-Below we show some example programs that can be written using the features of Construct described earlier in this document. 
-Each example begins with a view of the program in its final form, showing both the program space with the concluding state of the program, and the program graph of the definition dependencies of the whole program.
+Below is shown an example program that can be written using the features of Construct described earlier in this document. 
+The example begins with a view of the program in its final form, showing both the program space with the concluding state of the program and the program graph of the definition dependencies of the whole program.
+
+Though the program graph is drawn left to right to show the dependencies, it is important to remember that Construct programs can be composed in any order.
+The programmer may choose to begin at the result of the program, and filling in the dependencies until reaching a satisfying construction. 
+Alternatively, the program may be built from both ends, working the initial and final values together by creating intermediate objects.
 
 \pagebreak
 
