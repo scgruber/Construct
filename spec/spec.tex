@@ -375,7 +375,9 @@ They also appear in the program graph as annotations to the edges in the graph, 
 \subsection{Generic Definitions}
 \label{subsec:def-gen}
 
-The following Definitions describe objects of any type $\tau$. \\
+The following Definitions describe objects of any type $\tau$. 
+As noted above, Construct does not support parametric typing in user-created definitions. 
+Only this small set of built-in definitions are applicable to all types of objects. \\
 
 \noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\tau}$ & $::=$ & $\mathsf{null}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/null}} & This definition has no effect on this object. It may be used with the $\mathsf{handle}$ modifier (see Section \ref{subsec:mods-defs}). \\
