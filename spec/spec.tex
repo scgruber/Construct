@@ -593,6 +593,8 @@ $\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ & \raisebox{-.5\height}{\includegra
  & & $\mathsf{filter}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/filter}} & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
 \end{tabularx}
 
+
+
 \section{Local}
 \label{sec:local}
 
@@ -601,7 +603,7 @@ $\lambda$ & $::=$ & $\mathsf{local}(G)$ & \raisebox{-.5\height}{\includegraphics
 \end{tabularx}
 
 The design of the $\mathsf{local}$ icon mirrors the appearance of the local syntax in the program graph, as shown previously in Figure \ref{fig:local}.
-
+By boxing the computation that is done inside the local definition, this representation reinforces the nature of the definition as separate from the main program.
 
 \chapter{Execution}
 \label{chap:exec}
