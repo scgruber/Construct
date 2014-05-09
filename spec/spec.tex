@@ -725,6 +725,15 @@ Future user testing will allow us to understand where this may cause problems fo
 
 \subsection{\constructgoalscomplete}
 
+Construct aims to provide its users a fully-powerful programming system. 
+The capability for branching is provided by the $\mathsf{handle}$ modifier, and demonstrated in Section \ref{subsec:if}. 
+Since all programs written in Construct are definitions, the user definition drawers (shown in Section \ref{sec:environ}) allow the programmer to recursively use other definitions in programs.
+The existence of these two features strongly suggests the Turing-completeness of this programming system.
+
+The Construct programming environment has the potential to prevent the development of nonterminating programs, however. 
+Because the program space shows the runtime state of Construct programs, a nonterminating program would cause the environment to enter an infinite loop.
+The ability to represent nonterminating programs in the environment is an important design consideration for future work on programming interface for Construct.
+
 \appendix
 
 \bibliographystyle{acm}
