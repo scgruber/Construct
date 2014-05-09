@@ -530,6 +530,23 @@ $\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ & \raisebox{-.5\height}{\incl
  & & $\mathsf{exclude}(\rho : \tau; s : \mathsf{set}(\tau))$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/exclude}} & This set contains all members of the set $s$ except $\rho$. If $\rho$ is not a member of $s$, raise $\mathsf{DefErr}$.
 \end{tabularx}
 
+The definitions of $\mathsf{set}$ objects pose a unique challenge to represent in graphical form.
+Sets, unlike the other object types which have been previously addressed, are not clearly represented in a visual data view. 
+Similarly, the operations that are commonly performed on sets do not have a literal representation in pen-and-paper geometry.
+Set-based operations are often undertaken solely in the mind of the geometer during the algorithm, but must be represented in Construct programs.
+
+Therefore, the $\mathsf{set}$ icons borrow from non-geometric mathematics. 
+$\mathsf{empty}$ uses the common representation of an empty set as two curly braces enclosing no elements.
+While this does not relate directly to geometric views of a set, the icon does avoid an ambiguity with the icons for $\mathsf{null}$ and $\mathsf{cross}$, which resemble the alternative slashed-zero representation of an empty set.
+
+$\mathsf{size}$ is represented as finite set cardinality notation in discrete mathematics, and undergoes the same transformations as the other numeric definitions when applied to a $\mathsf{set}$ object.
+
+Solid circles were selected as an abstract representation of $\mathsf{set}$ objects for the $\mathsf{include}$ and $\mathsf{exclude}$ definitions.
+The $\mathsf{include}$ icon evokes the addition of a smaller, like element to the set, while the void in the $\mathsf{exclude}$ icon shows the removal of an element.
+
+Of the categories of icons presented in this document, the icons for $\mathsf{set}$ definitions have the least visual clarity.
+An area of future work will be to reconcile the requirements for $\mathsf{set}$ icons to produce symbols which can be clearly recognized by users.
+
 \subsection{Definitions for $\mathsf{grp}(\tau_1, \dots , \tau_n)$ Objects}
 \label{subsec:def-grp}
 
