@@ -77,11 +77,19 @@ We target four goals for the design of Construct to help programmers work with t
 \section{Related Work}
 \label{sec:related}
 
-\begin{itemize}
-  \item Visual programming with examples tools \cite{victor2013unthinkable}, \cite{victor2013deadfish}
-  \item A text-based geometry library with coordinate-free operations and a geometric, rather than algebraic, basis \cite{derose1989coordinatefree}
-  \item The Geometric Machine, a model of a computer suited to geometry operations rather than algebraic calculation \cite{reiser2003programming}
-\end{itemize}
+The use of computer systems to manipulate geometry has been an active area of research since Ivan Sutherland's work on the Sketchpad system \cite{sutherland1963sketchpad}. 
+Greg Nelson's later work on Juno \cite{nelson1985juno} and commercial development of computer-aided drafting and design software has focused on the application of constraints to direct manipulation drawing interfaces.
+These systems have been valuable tools to aid manual acceleration of geometric work, but fundamentally are only an enhanced version of pen-and-paper geometric techniques.
+
+Bret Victor has recently spoken \cite{victor2013future} on the value of wide-ranging approaches to computer science and programming.
+Recent work by Victor \cite{victor2013unthinkable,victor2013deadfish} has focused on the potential of visual tools which enable the development of systems with behavior.
+Victor's work engages with a data-centric view of programs, which is effective for representing compositions, but does not show the evaluation structure of the programs that are being composed.
+
+At the same time, there have been explorations into computer architectures suitable for work in geometric terms.
+Tony DeRose's analysis of coordinate-free geometric calculations \cite{derose1989coordinatefree}, though envisioned in the context of traditional text-based programming languages, provides a model of geometric computation that more closely mirrors pen-and-paper geometry.
+The Geometric Machine \cite{reiser2003programming} developed a computer system in which the memory is envisioned as a geometric space rather than the familiar Turing-machine one-dimensional stream of symbols.
+
+Construct aims to synthesize constraint-based geometry, visual tools for programming, and geometric bases for computation into a platform that engages visual and spatial thinkers and enables novel approaches to problems in computer science.
 
 \chapter{Geometric Syntax}
 \label{chap:syntax}
