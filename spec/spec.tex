@@ -576,6 +576,13 @@ $\mu_{\rho}$ & $::=$ & $\mathsf{initial}$ & \raisebox{-.5\height}{\includegraphi
  & & $\mathsf{unique}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/unique}} & The Definitions which specify $\rho$ must resolve to exactly one possible set of parameters. If $\rho$ is not uniquely defined, raise $\mathsf{DefErr}$.
 \end{tabularx}
 
+The icons designed for $\mathsf{initial}$ and $\mathsf{final}$ mirror the presentation of those object in the program graph.
+While it is possible for definitions to apply to or reference either, in most Construct programs definitions will only flow from $\mathsf{initial}$ objects and toward $\mathsf{final}$ objects.
+
+Uniqueness of definition is a constraint that may be useful to programmers to check programs for logical or input data errors. 
+However, it too has no analog in traditional geometry.
+Therefore, the iconic representation is a star, simply denoting that the object is ``special'' to the program. 
+
 \subsection{Modifiers for Definitions}
 \label{subsec:mods-defs}
 
