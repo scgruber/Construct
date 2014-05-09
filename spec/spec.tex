@@ -593,7 +593,16 @@ $\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ & \raisebox{-.5\height}{\includegra
  & & $\mathsf{filter}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/filter}} & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
 \end{tabularx}
 
+The icon representing $\mathsf{not}$ was selected both to correspond with the negation symbol in some existing programming languages, but also to remind the programmer that the definition is behaving in a manner opposite normal expectations. 
+When applied to a definition, the $\mathsf{not}$ icon prefixes the definition's usual symbol. 
+The bang symbol $!$ was chosen rather than the logical negation symbol $\neg$ because the logic symbol is entirely unfamiliar to non-mathematicians, and is also reminiscent of perpendicular lines, which could cause user confusion.
 
+The $\mathsf{handle}$ icon resembles the wavy arrow which is used to represent handling in the program graph. 
+It suggests a dependency between elements, but that this dependency is looser than usual.
+
+$\mathsf{each}$ and $\mathsf{filter}$ use representation similar to that used with sets to indicate objects that are considered or left out in their operations. 
+However, these icons suggest iteration, which is not a part of the semantics of the modifiers (all computations are strictly independent).
+A less-sequential design of these icons would be a valuable future improvement to the presentation of Construct modifiers.
 
 \section{Local}
 \label{sec:local}
