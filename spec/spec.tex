@@ -481,7 +481,7 @@ A programmer should be able to depend on the consistency of the buttons shown in
 
 \noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
 $\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \mathsf{ang})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/join}} & This angle's sweep is equal to the sum of the sweeps of $a$ and $b$. \\
- & & $\mathsf{split}(a : \mathsf{ang}; \; \bar{n})$ &  & This angle's sweep is equal to $\frac{1}{n}$ times the sweep of $a$. If $n = 0$, raise $\mathsf{DefErr}$. \\
+ & & $\mathsf{split}(a : \mathsf{ang}; \; \bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/split}} & This angle's sweep is equal to $\frac{1}{n}$ times the sweep of $a$. If $n = 0$, raise $\mathsf{DefErr}$. \\
  & & $\mathsf{sweep}(\bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/sweep}} & The sweep of this angle is equal to $n$ (in degrees). \\
  & & $\mathsf{between}(k : \mathsf{ln}; \; l : \mathsf{ln}; \; p : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/skew}} & This angle's sweep is the sweep between the lines $k$ and $l$ which contains $p$. \\
 \end{tabularx}
@@ -490,8 +490,8 @@ $\delta_{\mathsf{ang}}$ & $::=$ & $\mathsf{join}(a : \mathsf{ang}; \; b : \maths
 \label{subsec:def-dist}
 
 \noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
-$\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \mathsf{dist})$ &  & This distance is equal to the sum of the lengths of $d$ and $t$. \\
- & & $\mathsf{div}(d : \mathsf{dist}; \; \bar{n})$ &  & This distance is equal to $\frac{1}{n}$ times the length of $d$. If $n = 0$, raise $\mathsf{DefErr}$. \\
+$\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \mathsf{dist})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/sum}} & This distance is equal to the sum of the lengths of $d$ and $t$. \\
+ & & $\mathsf{div}(d : \mathsf{dist}; \; \bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/div}} & This distance is equal to $\frac{1}{n}$ times the length of $d$. If $n = 0$, raise $\mathsf{DefErr}$. \\
  & & $\mathsf{length}(\bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/length}} & This distance is equal to $n$.\\
  & & $\mathsf{span}(p : \mathsf{pt}; \; q : \mathsf{pt})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the distance from $p$ to $q$. \\
  & & $\mathsf{span}(p : \mathsf{pt}; \; l : \mathsf{ln})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/to}} & This distance is equal to the shortest distance from $p$ to $l$. \\
@@ -506,10 +506,10 @@ $\delta_{\mathsf{dist}}$ & $::=$ & $\mathsf{sum}(d : \mathsf{dist}; \; t : \math
 \label{subsec:def-set}
 
 \noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
-$\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ &  & This set has no members. \\
- & & $\mathsf{size}(\bar{n})$ &  & The number of members of this set. \\
- & & $\mathsf{include}(\rho : \tau; s : \mathsf{set}(\tau))$ &  & This set contains all members of the set $s$ and additionally contains $\rho$. \\
- & & $\mathsf{exclude}(\rho : \tau; s : \mathsf{set}(\tau))$ &  & This set contains all members of the set $s$ except $\rho$. If $\rho$ is not a member of $s$, raise $\mathsf{DefErr}$.
+$\delta_{\mathsf{set}}$ & $::=$ & $\mathsf{empty}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/empty}} & This set has no members. \\
+ & & $\mathsf{size}(\bar{n})$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/size}} & The number of members of this set. \\
+ & & $\mathsf{include}(\rho : \tau; s : \mathsf{set}(\tau))$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/include}} & This set contains all members of the set $s$ and additionally contains $\rho$. \\
+ & & $\mathsf{exclude}(\rho : \tau; s : \mathsf{set}(\tau))$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/exclude}} & This set contains all members of the set $s$ except $\rho$. If $\rho$ is not a member of $s$, raise $\mathsf{DefErr}$.
 \end{tabularx}
 
 \subsection{Definitions for $\mathsf{grp}(\tau_1, \dots , \tau_n)$ Objects}
@@ -532,26 +532,26 @@ Modifiers are higher-level constructs than Definitions which further specify pro
 \label{subsec:mods-obj}
 
 \noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
-$\mu_{\rho}$ & $::=$ & $\mathsf{initial}$ &  & $\rho$ is given as an input to the program. \\
- & & $\mathsf{final}$ &  & $\rho$ is the result of the program. \\
- & & $\mathsf{unique}$ &  & The Definitions which specify $\rho$ must resolve to exactly one possible set of parameters. If $\rho$ is not uniquely defined, raise $\mathsf{DefErr}$.
+$\mu_{\rho}$ & $::=$ & $\mathsf{initial}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/initial}} & $\rho$ is given as an input to the program. \\
+ & & $\mathsf{final}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/final}} & $\rho$ is the result of the program. \\
+ & & $\mathsf{unique}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/unique}} & The Definitions which specify $\rho$ must resolve to exactly one possible set of parameters. If $\rho$ is not uniquely defined, raise $\mathsf{DefErr}$.
 \end{tabularx}
 
 \subsection{Modifiers for Definitions}
 \label{subsec:mods-defs}
 
 \noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
-$\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ &  & The negation of this Definition. \\
- & & $\mathsf{handle}(\delta_\tau')$ &  & If this Definition raises a runtime error, instead apply $\delta_\tau'$. \\
- & & $\mathsf{each}$ &  & Applies this Definition over all members of a set, specifying a new Definition in the class $\delta_{\mathsf{set}(\tau)}$. If $\mathsf{DefErr}$ is raised at any point, this whole definition raises $\mathsf{DefErr}$. \\
- & & $\mathsf{filter}$ &  & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
+$\mu_{\delta_\tau}$ & $::=$ & $\mathsf{not}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/not}} & The negation of this Definition. \\
+ & & $\mathsf{handle}(\delta_\tau')$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/handle}} & If this Definition raises a runtime error, instead apply $\delta_\tau'$. \\
+ & & $\mathsf{each}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/each}} & Applies this Definition over all members of a set, specifying a new Definition in the class $\delta_{\mathsf{set}(\tau)}$. If $\mathsf{DefErr}$ is raised at any point, this whole definition raises $\mathsf{DefErr}$. \\
+ & & $\mathsf{filter}$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/filter}} & Applies this Definition over all members of a set. If the definition does not raise an error, include its {\it final} object in the new set. Otherwise, skip that object without raising $\mathsf{DefErr}$. \\
 \end{tabularx}
 
 \section{Local}
 \label{sec:local}
 
 \noindent\begin{tabularx}{\textwidth}{p{0.5cm} p{0.5cm} p{5cm} c X}
-$\lambda$ & $::=$ & $\mathsf{local}(G)$ &  & Produces a local definition from the program subgraph $G$. This can be used in conjunction with the $\mathsf{handle}$, $\mathsf{each}$ and $\mathsf{filter}$ modifiers to apply more complex behaviors.\\
+$\lambda$ & $::=$ & $\mathsf{local}(G)$ & \raisebox{-.5\height}{\includegraphics[width=\buttondim]{buttons/local}} & Produces a local definition from the program subgraph $G$. This can be used in conjunction with the $\mathsf{handle}$, $\mathsf{each}$ and $\mathsf{filter}$ modifiers to apply more complex behaviors.\\
 \end{tabularx}
 
 The design of the $\mathsf{local}$ icon mirrors the appearance of the local syntax in the program graph, as shown previously in Figure \ref{fig:local}.
